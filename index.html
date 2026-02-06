@@ -623,140 +623,168 @@ section {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   EDUCATION SECTION
+   EDUCATION SECTION — Terminal / Code Style
    ═══════════════════════════════════════════════════════════ */
-.education-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 1.5rem;
-}
-
-.edu-card {
-  padding: 2rem;
+.edu-terminal {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  transition: all 0.4s var(--ease);
-  position: relative;
   overflow: hidden;
-}
-
-.edu-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.edu-card:hover {
-  border-color: var(--border-hover);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-}
-
-.edu-card:hover::before { opacity: 1; }
-
-.edu-date {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--accent);
-  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.4s var(--ease);
 }
 
-.edu-degree {
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 0.35rem;
+.edu-terminal:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 30px rgba(108, 99, 255, 0.08);
 }
 
-.edu-institution {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  margin-bottom: 0.25rem;
+.edu-terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.85rem 1.25rem;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid var(--border);
 }
 
-.edu-location {
-  font-size: 0.82rem;
+.edu-terminal-header .dot { width: 10px; height: 10px; border-radius: 50%; }
+.edu-terminal-header .dot:nth-child(1) { background: #ff5f57; }
+.edu-terminal-header .dot:nth-child(2) { background: #febc2e; }
+.edu-terminal-header .dot:nth-child(3) { background: #28c840; }
+
+.edu-terminal-header .tab-title {
+  margin-left: 10px;
   color: var(--text-muted);
-  margin-bottom: 1rem;
+  font-size: 0.72rem;
 }
 
-.edu-details {
-  font-size: 0.88rem;
+.edu-terminal-body {
+  padding: 1.5rem 1.5rem;
+  line-height: 2;
   color: var(--text-secondary);
-  line-height: 1.7;
+}
+
+.edu-terminal-body .edu-keyword { color: var(--accent); font-weight: 500; }
+.edu-terminal-body .edu-string { color: var(--accent-warm); }
+.edu-terminal-body .edu-comment { color: var(--text-muted); font-style: italic; }
+.edu-terminal-body .edu-fn { color: var(--accent-2); }
+.edu-terminal-body .edu-number { color: var(--accent-3); }
+.edu-terminal-body .edu-prompt { color: var(--accent-2); font-weight: 500; }
+.edu-terminal-body .edu-output { color: var(--text-primary); }
+.edu-terminal-body .edu-type { color: #c792ea; }
+
+.edu-line {
+  display: block;
+  padding-left: 2rem;
+  text-indent: -2rem;
+}
+
+.edu-line-number {
+  display: inline-block;
+  width: 2rem;
+  text-align: right;
+  padding-right: 1rem;
+  color: var(--text-muted);
+  opacity: 0.4;
+  user-select: none;
+  text-indent: 0;
 }
 
 /* ═══════════════════════════════════════════════════════════
-   PROJECTS SECTION
+   PROJECTS SECTION — Showcase Layout (Non-Card)
    ═══════════════════════════════════════════════════════════ */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 1.5rem;
-}
-
-.project-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 2rem;
-  transition: all 0.4s var(--ease);
-  position: relative;
+.projects-list {
   display: flex;
   flex-direction: column;
+  gap: 0;
 }
 
-.project-card:hover {
-  border-color: var(--border-hover);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 50px rgba(0,0,0,0.3);
+.project-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 2rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.4s var(--ease);
+  position: relative;
 }
 
-.project-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.project-item:first-child {
+  padding-top: 0;
+}
+
+.project-item:last-child {
+  border-bottom: none;
+}
+
+.project-item:hover {
+  padding-left: 1rem;
+}
+
+.project-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-2));
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.project-item:hover::before {
+  opacity: 1;
+}
+
+.project-number {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  background: var(--gradient-text);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  min-width: 3.5rem;
+  animation: shimmer 4s ease infinite;
+}
+
+.project-body {
+  flex: 1;
+}
+
+.project-item .project-title {
   font-size: 1.3rem;
-  margin-bottom: 1.25rem;
-}
-
-.project-card:nth-child(1) .project-icon { background: var(--accent-dim); }
-.project-card:nth-child(2) .project-icon { background: var(--accent-2-dim); }
-.project-card:nth-child(3) .project-icon { background: rgba(255,107,107,0.08); }
-.project-card:nth-child(4) .project-icon { background: rgba(245,166,35,0.08); }
-.project-card:nth-child(5) .project-icon { background: var(--accent-dim); }
-.project-card:nth-child(6) .project-icon { background: var(--accent-2-dim); }
-
-.project-title {
-  font-size: 1.15rem;
   font-weight: 700;
   margin-bottom: 0.6rem;
+  transition: color 0.3s;
 }
 
-.project-desc {
-  font-size: 0.9rem;
+.project-item:hover .project-title {
+  color: var(--accent-light);
+}
+
+.project-item .project-desc {
+  font-size: 0.92rem;
   color: var(--text-secondary);
-  line-height: 1.7;
-  flex: 1;
-  margin-bottom: 1.25rem;
+  line-height: 1.8;
+  max-width: 700px;
+  margin-bottom: 1rem;
 }
 
-.project-tech {
+.project-item .project-tech {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
 
-.project-tech span {
+.project-item .project-tech span {
   padding: 0.2rem 0.6rem;
   background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
@@ -764,6 +792,65 @@ section {
   font-size: 0.72rem;
   color: var(--text-muted);
   font-family: var(--font-mono);
+  transition: all 0.3s;
+}
+
+.project-item:hover .project-tech span {
+  border-color: rgba(108, 99, 255, 0.2);
+  color: var(--text-secondary);
+}
+
+.project-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  min-width: 100px;
+}
+
+.project-status .status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+}
+
+.status-production {
+  background: rgba(0, 212, 170, 0.1);
+  border: 1px solid rgba(0, 212, 170, 0.2);
+  color: var(--accent-2);
+}
+
+.status-production::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  animation: pulse-dot 2s ease infinite;
+}
+
+.status-complete {
+  background: rgba(108, 99, 255, 0.1);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+  color: var(--accent-light);
+}
+
+@media (max-width: 768px) {
+  .project-item {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .project-number {
+    font-size: 2rem;
+  }
+  .project-status {
+    align-items: flex-start;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -868,44 +955,70 @@ section {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   SERVICES SECTION
+   SERVICES SECTION — Minimal Row Layout (Non-Card)
    ═══════════════════════════════════════════════════════════ */
-.services-grid {
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.service-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: 3rem 1fr;
   gap: 1.5rem;
-}
-
-.service-card {
-  padding: 2rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  text-align: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
   transition: all 0.4s var(--ease);
+  align-items: start;
 }
 
-.service-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(108, 99, 255, 0.1);
+.service-row:last-child {
+  border-bottom: none;
 }
 
-.service-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+.service-row:hover {
+  padding-left: 1rem;
 }
 
-.service-title {
-  font-size: 1.05rem;
+.service-row .service-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.service-row .service-title {
+  font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s;
 }
 
-.service-desc {
-  font-size: 0.88rem;
+.service-row:hover .service-title {
+  color: var(--accent-light);
+}
+
+.service-row .service-desc {
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.8;
+  max-width: 700px;
+}
+
+.service-row .service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.service-row .service-tags span {
+  padding: 0.2rem 0.6rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1017,8 +1130,7 @@ footer span { color: var(--accent); }
 
   .hero-stat { flex: 0 0 calc(50% - 0.75rem); }
 
-  .projects-grid { grid-template-columns: 1fr; }
-  .education-cards { grid-template-columns: 1fr; }
+  .project-item { grid-template-columns: 1fr; }
 
   .about-highlights { grid-template-columns: 1fr; }
 }
@@ -1131,9 +1243,9 @@ footer span { color: var(--accent); }
           <div class="highlight-value">English, Urdu, Pashto, French</div>
         </div>
         <div class="highlight-card">
-          <div class="highlight-icon">🏢</div>
-          <div class="highlight-label">Department</div>
-          <div class="highlight-value">DSIN, Paris-Saclay</div>
+          <div class="highlight-icon">🎯</div>
+          <div class="highlight-label">Focus</div>
+          <div class="highlight-value">Data & AI Engineering</div>
         </div>
       </div>
     </div>
@@ -1181,9 +1293,9 @@ footer span { color: var(--accent); }
     <div class="timeline-item reveal">
       <div class="timeline-date">SEP 2025 — PRESENT</div>
       <div class="timeline-role">Data & AI Engineer</div>
-      <div class="timeline-company"><a href="https://www.universite-paris-saclay.fr/" target="_blank">Université d'Évry Paris-Saclay</a> · DSIN · Évry, France</div>
+      <div class="timeline-company"><a href="https://www.universite-paris-saclay.fr/" target="_blank">Université d'Évry Paris-Saclay</a> · Évry, France</div>
       <div class="timeline-desc">
-        Managing production AI infrastructure serving 500+ university staff. Deployed RAG chatbots for HR and IT departments with sub-second response times. Built GPU-optimized model serving with vLLM on dual NVIDIA L40S systems. Engineered OpenWebUI deployments with custom pipelines, MCP server integrations, and comprehensive monitoring with OpenTelemetry & Grafana. Migrated databases from SQLite to PostgreSQL for production scalability. Developed automated transcription systems for BigBlueButton meetings using Faster-Whisper. Created Zimbra email management, GitLab smart assistant, and university-specific tool integrations.
+        Designing and deploying production RAG-based chatbots serving university staff, improving knowledge access across HR and IT departments. Building end-to-end document processing pipelines handling multimodal data (PDFs, images, tables) with 95% content extraction accuracy. Managing AI infrastructure including dual NVIDIA L40S GPU servers, vLLM, and Ollama deployments for high-throughput inference. Implementing reranking and hybrid search strategies using FAISS and PostgreSQL vector stores to optimize retrieval precision. Deploying and maintaining OpenWebUI instances integrated with university systems. Setting up monitoring and observability using OpenTelemetry and Grafana for production AI services.
       </div>
       <div class="timeline-tags">
         <span class="timeline-tag">vLLM</span>
@@ -1192,6 +1304,7 @@ footer span { color: var(--accent); }
         <span class="timeline-tag">Docker</span>
         <span class="timeline-tag">NVIDIA L40S</span>
         <span class="timeline-tag">PostgreSQL</span>
+        <span class="timeline-tag">FAISS</span>
         <span class="timeline-tag">OTEL</span>
         <span class="timeline-tag">Grafana</span>
         <span class="timeline-tag">MCP</span>
@@ -1199,28 +1312,30 @@ footer span { color: var(--accent); }
     </div>
 
     <div class="timeline-item reveal">
-      <div class="timeline-date">MAR 2025 — AUG 2025</div>
-      <div class="timeline-role">AI & Data Science Intern</div>
-      <div class="timeline-company"><a href="https://www.universite-paris-saclay.fr/" target="_blank">Université d'Évry Paris-Saclay</a> · Évry, France</div>
+      <div class="timeline-date">MAR 2025 — JUN 2025</div>
+      <div class="timeline-role">Data Science Intern</div>
+      <div class="timeline-company"><a href="https://www.universite-paris-saclay.fr/" target="_blank">Université Paris-Saclay</a> · Évry, France</div>
       <div class="timeline-desc">
-        Designed and developed an intelligent HR chatbot prototype using LLMs and Retrieval-Augmented Generation (RAG) to automate staff inquiries on recruitment, training, leave policies, and regulatory compliance. Implemented validation mechanisms ensuring compliance with institutional policies. Built multimodal document processing pipelines using vision-language models, improving content extraction from complex PDFs (tables, charts, images) from 60% to 95%.
+        Developing an intelligent HR chatbot using LLMs and Retrieval-Augmented Generation (RAG) to automate staff inquiries on recruitment, leave, and training. Implementing robust validation mechanisms to ensure accurate and policy-compliant responses. Designing a user-friendly interface using Streamlit and Gradio, deployed within the university's internal data center. Leveraging tools like Unstructured.io, Docling, LlamaParse, pdfplumber, and LangChain for document parsing and knowledge extraction. Using open-source models such as LLaMA, Mistral, and others for generating contextual answers via API integration.
       </div>
       <div class="timeline-tags">
         <span class="timeline-tag">LLMs</span>
         <span class="timeline-tag">RAG</span>
         <span class="timeline-tag">LangChain</span>
-        <span class="timeline-tag">RAGFlow</span>
+        <span class="timeline-tag">Streamlit</span>
+        <span class="timeline-tag">Gradio</span>
         <span class="timeline-tag">Python</span>
         <span class="timeline-tag">FAISS</span>
+        <span class="timeline-tag">LlamaParse</span>
       </div>
     </div>
 
     <div class="timeline-item reveal">
       <div class="timeline-date">OCT 2023 — APR 2024</div>
-      <div class="timeline-role">Data Analyst Intern</div>
-      <div class="timeline-company"><a href="https://codeclause.com" target="_blank">CodeClause</a> · Remote</div>
+      <div class="timeline-role">Data Analyst Intern (Remote)</div>
+      <div class="timeline-company"><a href="https://codeclause.com" target="_blank">CodeClause Pvt Ltd.</a> · Remote</div>
       <div class="timeline-desc">
-        Developed predictive machine learning models, improving data-driven decision-making by 30%. Automated data pipelines using Python, Pandas, and SQL, reducing data processing time by 25%. Designed interactive data visualizations using Matplotlib and Seaborn to present business insights to stakeholders.
+        Led data preparation tasks, including handling missing values and standardizing data for accurate analysis. Applied advanced statistical techniques (e.g., linear regression, hypothesis testing) to uncover insights and support decision-making. Delivered actionable insights via dashboards and reports, enhancing stakeholder understanding and driving strategic decisions.
       </div>
       <div class="timeline-tags">
         <span class="timeline-tag">Python</span>
@@ -1228,22 +1343,7 @@ footer span { color: var(--accent); }
         <span class="timeline-tag">SQL</span>
         <span class="timeline-tag">ML</span>
         <span class="timeline-tag">Visualization</span>
-      </div>
-    </div>
-
-    <div class="timeline-item reveal">
-      <div class="timeline-date">JAN 2023 — SEP 2023</div>
-      <div class="timeline-role">Freelance Web & Data Solutions Consultant</div>
-      <div class="timeline-company">Upwork & Fiverr · Remote</div>
-      <div class="timeline-desc">
-        Built interactive websites and data dashboards for international clients. Designed and deployed data reporting tools using Python. Optimized data pipelines using ETL tools. Provided analytics support for marketing and e-commerce clients across diverse markets.
-      </div>
-      <div class="timeline-tags">
-        <span class="timeline-tag">Python</span>
-        <span class="timeline-tag">Dashboards</span>
-        <span class="timeline-tag">ETL</span>
-        <span class="timeline-tag">Web Dev</span>
-        <span class="timeline-tag">Consulting</span>
+        <span class="timeline-tag">Power BI</span>
       </div>
     </div>
   </div>
@@ -1255,35 +1355,55 @@ footer span { color: var(--accent); }
   <h2 class="section-title reveal">Academic Foundation</h2>
   <p class="section-subtitle reveal">From Pakistan to Paris — a journey driven by curiosity.</p>
 
-  <div class="education-cards">
-    <div class="edu-card reveal">
-      <div class="edu-date">2024 — 2025</div>
-      <div class="edu-degree">M.Sc. Data Science & Network Intelligence</div>
-      <div class="edu-institution">Télécom SudParis — Institut Polytechnique de Paris</div>
-      <div class="edu-location">Évry-Courcouronnes, France</div>
-      <div class="edu-details">
-        Advanced coursework in Machine Learning, Deep Learning, NLP, Data Mining, and Network Science. Master's thesis on Generative AI chatbot development using RAG and LLMs for university administration, evaluated positively by jury.
-      </div>
+  <div class="edu-terminal reveal">
+    <div class="edu-terminal-header">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="tab-title">education.py — masters</span>
     </div>
-
-    <div class="edu-card reveal">
-      <div class="edu-date">2018 — 2022</div>
-      <div class="edu-degree">B.Sc. Information Technology</div>
-      <div class="edu-institution">University of Malakand</div>
-      <div class="edu-location">Khyber Pakhtunkhwa, Pakistan</div>
-      <div class="edu-details">
-        CGPA: 3.37/4.00. Senior Design Project (Grade A+): Arduino-based self-driving car integrating computer vision and ML for obstacle detection and lane tracking. Relevant coursework: Data Structures & Algorithms, Database Administration (A+), OOP, Software Engineering. Workshops in Software Engineering (2021) and Cyber Security (2022).
-      </div>
+    <div class="edu-terminal-body">
+      <span class="edu-line"><span class="edu-line-number">1</span><span class="edu-keyword">class</span> <span class="edu-fn">MastersDegree</span>:</span><br>
+      <span class="edu-line"><span class="edu-line-number">2</span>    <span class="edu-string">"""M.Sc. M2 in Data Science and Network Intelligence"""</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">3</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">4</span>    institution  = <span class="edu-string">"Institut Polytechnique de Paris, France"</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">5</span>    duration     = <span class="edu-string">"Sep 2024 — Present"</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">6</span>    gpa          = <span class="edu-number">15.81</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">7</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">8</span>    coursework = [</span><br>
+      <span class="edu-line"><span class="edu-line-number">9</span>        <span class="edu-string">"Data Science"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">10</span>        <span class="edu-string">"Data Visualization"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">11</span>        <span class="edu-string">"Deep Learning"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">12</span>        <span class="edu-string">"Blockchain"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">13</span>        <span class="edu-string">"Network Intelligence"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">14</span>        <span class="edu-string">"Internet of Things (IoT)"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">15</span>        <span class="edu-string">"Distributed Networking"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">16</span>        <span class="edu-string">"Business Modeling"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">17</span>    ]</span><br>
     </div>
+  </div>
 
-    <div class="edu-card reveal">
-      <div class="edu-date">2016 — 2018</div>
-      <div class="edu-degree">Intermediate (FSc Pre-Engineering)</div>
-      <div class="edu-institution">Govt. PG Jahanzeb College</div>
-      <div class="edu-location">Saidu Sharif, Swat, Pakistan</div>
-      <div class="edu-details">
-        Pre-engineering track with a focus on Mathematics and Physics. Built the foundation for a technical career in computing and engineering.
-      </div>
+  <div class="edu-terminal reveal">
+    <div class="edu-terminal-header">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="tab-title">education.py — bachelors</span>
+    </div>
+    <div class="edu-terminal-body">
+      <span class="edu-line"><span class="edu-line-number">1</span><span class="edu-keyword">class</span> <span class="edu-fn">BachelorsDegree</span>:</span><br>
+      <span class="edu-line"><span class="edu-line-number">2</span>    <span class="edu-string">"""Bachelor of Computer Science"""</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">3</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">4</span>    institution  = <span class="edu-string">"University of Malakand, Pakistan"</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">5</span>    duration     = <span class="edu-string">"Aug 2019 — Sep 2023"</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">6</span>    gpa          = <span class="edu-number">3.75</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">7</span></span><br>
+      <span class="edu-line"><span class="edu-line-number">8</span>    coursework = [</span><br>
+      <span class="edu-line"><span class="edu-line-number">9</span>        <span class="edu-string">"Programming Languages"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">10</span>        <span class="edu-string">"Web Development"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">11</span>        <span class="edu-string">"Database Management"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">12</span>        <span class="edu-string">"Operating Systems"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">13</span>        <span class="edu-string">"Networking"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">14</span>        <span class="edu-string">"Software Engineering"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">15</span>        <span class="edu-string">"Artificial Intelligence"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">16</span>        <span class="edu-string">"Mathematics &amp; Statistics"</span>,</span><br>
+      <span class="edu-line"><span class="edu-line-number">17</span>    ]</span><br>
     </div>
   </div>
 </section>
@@ -1294,92 +1414,68 @@ footer span { color: var(--accent); }
   <h2 class="section-title reveal">What I've Built</h2>
   <p class="section-subtitle reveal">Production systems with real users — not weekend demos.</p>
 
-  <div class="projects-grid">
-    <div class="project-card reveal">
-      <div class="project-icon">🤖</div>
-      <div class="project-title">University RAG Chatbot Platform</div>
-      <div class="project-desc">
-        Architected and deployed production RAG chatbots serving 500+ university staff for HR and IT support queries. Built multimodal document processing pipelines using vision-language models, improving content extraction from complex PDFs from 60% to 95%. Implemented hybrid search combining semantic embeddings with BM25 lexical search, increasing retrieval precision by 35%.
+  <div class="projects-list">
+    <div class="project-item reveal">
+      <div class="project-number">01</div>
+      <div class="project-body">
+        <div class="project-title">University AI Infrastructure &amp; RAG Platform</div>
+        <div class="project-desc">
+          Architected and deployed production RAG chatbots serving 500+ university staff for HR and IT support queries with sub-second response times. Built multimodal document processing pipelines using vision-language models, improving content extraction from complex PDFs (tables, charts, images) from 60% to 95%. Developed custom MCP (Model Context Protocol) servers integrating OpenWebUI with RAGFlow, vLLM, and university databases for seamless tool calling. Implemented hybrid search combining semantic embeddings with BM25 lexical search, increasing retrieval precision by 35%.
+        </div>
+        <div class="project-tech">
+          <span>Python</span><span>RAGFlow</span><span>vLLM</span><span>Ollama</span><span>FAISS</span><span>PostgreSQL</span><span>Docker</span><span>OpenWebUI</span>
+        </div>
       </div>
-      <div class="project-tech">
-        <span>Python</span><span>RAG</span><span>LangChain</span><span>RAGFlow</span><span>FAISS</span><span>ChromaDB</span><span>vLLM</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-icon">⚡</div>
-      <div class="project-title">GPU-Optimized LLM Serving Infrastructure</div>
-      <div class="project-desc">
-        Engineered high-performance model serving infrastructure on dual NVIDIA L40S GPUs using vLLM. Configured tensor parallelism, continuous batching, and memory optimization for serving multiple LLMs simultaneously including gpt-oss-20b and vision models. Built comprehensive GPU monitoring dashboards with real-time metrics.
-      </div>
-      <div class="project-tech">
-        <span>vLLM</span><span>NVIDIA L40S</span><span>Docker</span><span>CUDA</span><span>FastAPI</span><span>Monitoring</span>
+      <div class="project-status">
+        <span class="status-badge status-production">Production</span>
       </div>
     </div>
 
-    <div class="project-card reveal">
-      <div class="project-icon">📊</div>
-      <div class="project-title">Full Observability Stack (OTEL + LGTM)</div>
-      <div class="project-desc">
-        Implemented comprehensive monitoring using OpenTelemetry Collector, Loki, Grafana, Tempo, and Mimir. Built custom dashboards tracking AI model performance, request latency, GPU utilization, and system health. Enabled proactive incident detection and capacity planning for the AI platform.
+    <div class="project-item reveal">
+      <div class="project-number">02</div>
+      <div class="project-body">
+        <div class="project-title">Automated Meeting Transcription System</div>
+        <div class="project-desc">
+          Designed and deployed an automated transcription pipeline for BigBlueButton video conferencing integrated with university infrastructure. Implemented post-publish hooks triggering Whisper-based transcription on dual NVIDIA L40S GPUs for French and English audio. Built summarization workflows using LLMs to generate meeting notes and action items automatically.
+        </div>
+        <div class="project-tech">
+          <span>Python</span><span>Faster-Whisper</span><span>BigBlueButton API</span><span>Docker</span><span>Bash</span>
+        </div>
       </div>
-      <div class="project-tech">
-        <span>OpenTelemetry</span><span>Grafana</span><span>Loki</span><span>Tempo</span><span>Docker</span><span>Prometheus</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-icon">🔧</div>
-      <div class="project-title">OpenWebUI Platform & Custom Integrations</div>
-      <div class="project-desc">
-        Managed production OpenWebUI deployment from v0.6.x to v0.7.2 with custom pipelines and tools. Developed MCP server integrations connecting to RAGFlow, university databases, and external services. Created Zimbra email management tools, GitLab smart assistants, and CLI command execution tools.
-      </div>
-      <div class="project-tech">
-        <span>OpenWebUI</span><span>MCP</span><span>Python</span><span>Docker</span><span>PostgreSQL</span><span>Pipelines</span>
+      <div class="project-status">
+        <span class="status-badge status-production">Production</span>
       </div>
     </div>
 
-    <div class="project-card reveal">
-      <div class="project-icon">🎙️</div>
-      <div class="project-title">Automated Meeting Transcription System</div>
-      <div class="project-desc">
-        Built automated transcription pipeline for BigBlueButton video conferences using Faster-Whisper. Processes meeting recordings, generates accurate transcripts with speaker diarization, and integrates with the university's collaboration tools for seamless access to meeting summaries.
+    <div class="project-item reveal">
+      <div class="project-number">03</div>
+      <div class="project-body">
+        <div class="project-title">OpenWebUI Pipelines &amp; Agentic Workflows</div>
+        <div class="project-desc">
+          Created custom OpenWebUI pipelines enabling multi-step research agents combining internal document search with web retrieval. Developed filter pipelines for RAG injection, response validation, and Langfuse monitoring integration. Built manifold pipes exposing multiple LLM backends (vLLM, Ollama, OpenAI) through a unified interface.
+        </div>
+        <div class="project-tech">
+          <span>Python</span><span>OpenWebUI</span><span>LangChain</span><span>FastAPI</span><span>Redis</span>
+        </div>
       </div>
-      <div class="project-tech">
-        <span>Faster-Whisper</span><span>BigBlueButton</span><span>Python</span><span>Docker</span><span>FFmpeg</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-icon">🏥</div>
-      <div class="project-title">MediBot — Medical AI Chatbot</div>
-      <div class="project-desc">
-        Developed a Retrieval-Augmented Generation (RAG) based medical chatbot using LangChain and large language models. Implemented semantic search over medical documents to provide accurate, context-aware responses for health-related queries.
-      </div>
-      <div class="project-tech">
-        <span>LangChain</span><span>LLMs</span><span>RAG</span><span>Python</span><span>Streamlit</span><span>FAISS</span>
+      <div class="project-status">
+        <span class="status-badge status-production">Production</span>
       </div>
     </div>
 
-    <div class="project-card reveal">
-      <div class="project-icon">🧠</div>
-      <div class="project-title">Text-Based Emotion Detection</div>
-      <div class="project-desc">
-        Built deep learning models for multi-class emotion detection from text using TensorFlow, Keras, and PyTorch. Applied NLP techniques including tokenization, embedding, and recurrent architectures to analyze emotional content in textual data with high accuracy.
+    <div class="project-item reveal">
+      <div class="project-number">04</div>
+      <div class="project-body">
+        <div class="project-title">MediBot — Medical Information Chatbot</div>
+        <div class="project-desc">
+          Built an AI-powered medical chatbot retrieving trusted health information using context-based RAG retrieval. Implemented FAISS vector store with Mistral-7B for accurate, source-attributed medical responses.
+        </div>
+        <div class="project-tech">
+          <span>Python</span><span>LangChain</span><span>FAISS</span><span>Hugging Face</span><span>Mistral-7B</span><span>Streamlit</span>
+        </div>
       </div>
-      <div class="project-tech">
-        <span>TensorFlow</span><span>PyTorch</span><span>NLP</span><span>Deep Learning</span><span>NLTK</span><span>SpaCy</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-icon">🚗</div>
-      <div class="project-title">Arduino Self-Driving Car</div>
-      <div class="project-desc">
-        Final year project integrating computer vision and machine learning for autonomous navigation. Implemented obstacle detection, lane tracking, and adaptive control using C++ on embedded systems. Recognized for technical complexity with Grade A+.
-      </div>
-      <div class="project-tech">
-        <span>Arduino</span><span>C++</span><span>Computer Vision</span><span>ML</span><span>Embedded Systems</span>
+      <div class="project-status">
+        <span class="status-badge status-complete">Complete</span>
       </div>
     </div>
   </div>
@@ -1393,49 +1489,60 @@ footer span { color: var(--accent); }
 
   <div class="skills-container">
     <div class="skill-group reveal">
-      <div class="skill-group-icon">🤖</div>
-      <div class="skill-group-title">AI & Machine Learning</div>
+      <div class="skill-group-icon">💻</div>
+      <div class="skill-group-title">Languages</div>
       <div class="skill-list">
-        <span class="skill-pill">LLMs</span>
-        <span class="skill-pill">RAG</span>
-        <span class="skill-pill">NLP</span>
-        <span class="skill-pill">Deep Learning</span>
-        <span class="skill-pill">Transformers</span>
-        <span class="skill-pill">Fine-tuning</span>
-        <span class="skill-pill">Prompt Engineering</span>
-        <span class="skill-pill">Embeddings</span>
-        <span class="skill-pill">Semantic Search</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">C++</span>
+        <span class="skill-pill">Java</span>
+        <span class="skill-pill">SQL (MySQL, PostgreSQL)</span>
       </div>
     </div>
 
     <div class="skill-group reveal">
-      <div class="skill-group-icon">💻</div>
-      <div class="skill-group-title">Languages & Frameworks</div>
+      <div class="skill-group-icon">📊</div>
+      <div class="skill-group-title">Technologies & Tools</div>
       <div class="skill-list">
-        <span class="skill-pill">Python</span>
-        <span class="skill-pill">SQL</span>
-        <span class="skill-pill">C++</span>
-        <span class="skill-pill">JavaScript</span>
-        <span class="skill-pill">FastAPI</span>
+        <span class="skill-pill">Power BI</span>
+        <span class="skill-pill">Tableau</span>
+        <span class="skill-pill">Excel</span>
+        <span class="skill-pill">Pandas</span>
+        <span class="skill-pill">NumPy</span>
+        <span class="skill-pill">Matplotlib</span>
+        <span class="skill-pill">Seaborn</span>
+        <span class="skill-pill">TensorFlow</span>
+        <span class="skill-pill">Keras</span>
+        <span class="skill-pill">PyTorch</span>
+        <span class="skill-pill">Scikit-learn</span>
+        <span class="skill-pill">XGBoost</span>
+        <span class="skill-pill">LightGBM</span>
+        <span class="skill-pill">FAISS</span>
         <span class="skill-pill">LangChain</span>
+        <span class="skill-pill">Hugging Face</span>
+        <span class="skill-pill">Git</span>
+        <span class="skill-pill">GitHub</span>
+        <span class="skill-pill">VS Code</span>
         <span class="skill-pill">Streamlit</span>
         <span class="skill-pill">Gradio</span>
       </div>
     </div>
 
     <div class="skill-group reveal">
-      <div class="skill-group-icon">🧠</div>
-      <div class="skill-group-title">ML Libraries</div>
+      <div class="skill-group-icon">🤖</div>
+      <div class="skill-group-title">Machine Learning & AI</div>
       <div class="skill-list">
-        <span class="skill-pill">PyTorch</span>
-        <span class="skill-pill">TensorFlow</span>
-        <span class="skill-pill">Scikit-learn</span>
-        <span class="skill-pill">Hugging Face</span>
-        <span class="skill-pill">XGBoost</span>
-        <span class="skill-pill">LightGBM</span>
-        <span class="skill-pill">FAISS</span>
+        <span class="skill-pill">Supervised/Unsupervised Learning</span>
+        <span class="skill-pill">Data Preprocessing</span>
+        <span class="skill-pill">Model Training</span>
+        <span class="skill-pill">Neural Networks</span>
+        <span class="skill-pill">Deep Learning</span>
+        <span class="skill-pill">Data Visualization</span>
+        <span class="skill-pill">A/B Testing</span>
+        <span class="skill-pill">Feature Engineering</span>
+        <span class="skill-pill">LLMs</span>
+        <span class="skill-pill">RAG</span>
+        <span class="skill-pill">Chatbot Development</span>
         <span class="skill-pill">ChromaDB</span>
-        <span class="skill-pill">SpaCy</span>
       </div>
     </div>
 
@@ -1451,23 +1558,17 @@ footer span { color: var(--accent); }
         <span class="skill-pill">Linux</span>
         <span class="skill-pill">Nginx</span>
         <span class="skill-pill">GitLab CI/CD</span>
-        <span class="skill-pill">Systemd</span>
       </div>
     </div>
 
     <div class="skill-group reveal">
-      <div class="skill-group-icon">📊</div>
-      <div class="skill-group-title">Observability & Data</div>
+      <div class="skill-group-icon">🌍</div>
+      <div class="skill-group-title">Languages Spoken</div>
       <div class="skill-list">
-        <span class="skill-pill">OpenTelemetry</span>
-        <span class="skill-pill">Grafana</span>
-        <span class="skill-pill">Loki</span>
-        <span class="skill-pill">Prometheus</span>
-        <span class="skill-pill">PostgreSQL</span>
-        <span class="skill-pill">Pandas</span>
-        <span class="skill-pill">NumPy</span>
-        <span class="skill-pill">Matplotlib</span>
-        <span class="skill-pill">Plotly</span>
+        <span class="skill-pill">English (Fluent)</span>
+        <span class="skill-pill">Pashto (Native/Bilingual)</span>
+        <span class="skill-pill">Urdu (Native/Bilingual)</span>
+        <span class="skill-pill">French (Basic)</span>
       </div>
     </div>
 
@@ -1481,8 +1582,8 @@ footer span { color: var(--accent); }
         <span class="skill-pill">Hugging Face</span>
         <span class="skill-pill">BigBlueButton</span>
         <span class="skill-pill">Faster-Whisper</span>
-        <span class="skill-pill">Zimbra</span>
-        <span class="skill-pill">Git</span>
+        <span class="skill-pill">OpenTelemetry</span>
+        <span class="skill-pill">Grafana</span>
       </div>
     </div>
   </div>
@@ -1528,29 +1629,49 @@ footer span { color: var(--accent); }
   <h2 class="section-title reveal">How I Can Help</h2>
   <p class="section-subtitle reveal">Open for consulting, freelance, and collaboration opportunities.</p>
 
-  <div class="services-grid">
-    <div class="service-card reveal">
+  <div class="services-list">
+    <div class="service-row reveal">
       <div class="service-icon">🤖</div>
-      <div class="service-title">RAG & AI Chatbot Development</div>
-      <div class="service-desc">End-to-end design and deployment of production RAG systems and intelligent chatbots for customer support, HR automation, IT helpdesks, and knowledge management using open-source LLMs.</div>
+      <div class="service-content">
+        <div class="service-title">RAG & AI Chatbot Development</div>
+        <div class="service-desc">End-to-end design and deployment of production RAG systems and intelligent chatbots for customer support, HR automation, IT helpdesks, and knowledge management using open-source LLMs.</div>
+        <div class="service-tags">
+          <span>LangChain</span><span>RAGFlow</span><span>OpenWebUI</span><span>FAISS</span><span>vLLM</span>
+        </div>
+      </div>
     </div>
 
-    <div class="service-card reveal">
+    <div class="service-row reveal">
       <div class="service-icon">🏗️</div>
-      <div class="service-title">AI Infrastructure Setup</div>
-      <div class="service-desc">GPU-optimized LLM serving with vLLM/Ollama, Docker containerization, OpenWebUI deployments, database migrations, and comprehensive monitoring with OTEL & Grafana stacks.</div>
+      <div class="service-content">
+        <div class="service-title">AI Infrastructure Setup</div>
+        <div class="service-desc">GPU-optimized LLM serving with vLLM/Ollama, Docker containerization, OpenWebUI deployments, database migrations, and comprehensive monitoring with OTEL & Grafana stacks.</div>
+        <div class="service-tags">
+          <span>Docker</span><span>vLLM</span><span>NVIDIA CUDA</span><span>Grafana</span><span>PostgreSQL</span>
+        </div>
+      </div>
     </div>
 
-    <div class="service-card reveal">
+    <div class="service-row reveal">
       <div class="service-icon">📊</div>
-      <div class="service-title">Data Dashboards & Analytics</div>
-      <div class="service-desc">Interactive data dashboards, automated reporting tools, ETL pipeline development, and data-driven insights using Python, SQL, and modern visualization frameworks.</div>
+      <div class="service-content">
+        <div class="service-title">Data Dashboards & Analytics</div>
+        <div class="service-desc">Interactive data dashboards, automated reporting tools, ETL pipeline development, and data-driven insights using Python, SQL, and modern visualization frameworks.</div>
+        <div class="service-tags">
+          <span>Power BI</span><span>Tableau</span><span>Python</span><span>Pandas</span><span>SQL</span>
+        </div>
+      </div>
     </div>
 
-    <div class="service-card reveal">
+    <div class="service-row reveal">
       <div class="service-icon">🔌</div>
-      <div class="service-title">Custom AI Integrations</div>
-      <div class="service-desc">MCP server development, API integrations, custom OpenWebUI pipelines and tools, email automation, meeting transcription systems, and enterprise AI workflow automation.</div>
+      <div class="service-content">
+        <div class="service-title">Custom AI Integrations</div>
+        <div class="service-desc">MCP server development, API integrations, custom OpenWebUI pipelines and tools, meeting transcription systems, and enterprise AI workflow automation.</div>
+        <div class="service-tags">
+          <span>MCP</span><span>FastAPI</span><span>OpenWebUI</span><span>Docker</span><span>Redis</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
