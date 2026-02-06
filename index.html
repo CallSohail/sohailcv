@@ -1,1869 +1,1645 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Sohail - AI-Powered Data Scientist Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Custom CSS for particles and overall theme */
-        :root {
-            --midnight-blue: #1A202C;
-            --white: #FFFFFF;
-            --neon-green: #38B2AC; /* Teal-like neon green */
-            --light-bg: #f7fafc;
-            --light-text: #2d3748;
-            --light-accent: #3182CE;
-            --dark-card-bg: #2D3748; /* Slightly darker grey for project cards in dark mode */
-            --dark-border: rgba(255, 255, 255, 0.15); /* Slightly more visible border in dark mode */
-            --light-border: rgba(0, 0, 0, 0.15); /* Slightly more visible border in light mode */
-            --dark-text-secondary: #CBD5E0; /* Lighter grey for secondary text in dark mode */
-            --light-text-secondary: #4A5568; /* Darker grey for secondary text in light mode */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Muhammad Sohail — Data & AI Engineer specializing in production RAG systems, LLM infrastructure, and enterprise AI deployments.">
+<meta name="keywords" content="Muhammad Sohail, Data Engineer, AI Engineer, RAG, LLM, Machine Learning, NLP, Portfolio">
+<meta name="author" content="Muhammad Sohail">
+<title>Muhammad Sohail — Data & AI Engineer</title>
 
-        body {
-            font-family: 'Roboto Mono', monospace; /* Overall font to Mono Space */
-            background-color: var(--midnight-blue);
-            color: var(--white);
-            transition: background-color 0.3s, color 0.3s;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-        }
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
-        body.light-mode {
-            background-color: var(--light-bg);
-            color: var(--light-text);
-        }
+<style>
+/* ═══════════════════════════════════════════════════════════
+   CSS VARIABLES & RESET
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --bg-primary: #050508;
+  --bg-secondary: #0c0c12;
+  --bg-card: #111118;
+  --bg-card-hover: #16161f;
+  --border: #1e1e2a;
+  --border-hover: #2a2a3a;
+  --text-primary: #e8e8f0;
+  --text-secondary: #9494a8;
+  --text-muted: #5c5c72;
+  --accent: #6c63ff;
+  --accent-light: #8b84ff;
+  --accent-dim: rgba(108, 99, 255, 0.08);
+  --accent-glow: rgba(108, 99, 255, 0.2);
+  --accent-2: #00d4aa;
+  --accent-2-dim: rgba(0, 212, 170, 0.08);
+  --accent-3: #ff6b6b;
+  --accent-warm: #f5a623;
+  --gradient-text: linear-gradient(135deg, #6c63ff 0%, #00d4aa 50%, #6c63ff 100%);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Outfit', -apple-system, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --max-width: 1200px;
+  --nav-height: 72px;
+}
 
-        .audiowide-regular {
-            font-family: "Audiowide", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-        }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .section-title {
-            font-family: 'Roboto Mono', monospace;
-            color: var(--neon-green);
-            text-shadow: 0 0 5px var(--neon-green);
-        }
+html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
 
-        .dark-mode .section-title {
-             text-shadow: 0 0 8px var(--neon-green);
-        }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.7;
+}
 
-        /* Particle Background */
-        .particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.2;
-        }
+::selection { background: var(--accent); color: white; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
 
-        /* Hero Section Animation */
-        .animated-subtitle span {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideIn 0.5s forwards;
-        }
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* ═══════════════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  transition: all 0.4s var(--ease);
+  backdrop-filter: blur(0px);
+  background: transparent;
+}
 
-        /* Timeline styles */
-        .timeline-item {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 40px;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 6px;
-            width: 15px;
-            height: 15px;
-            background: var(--neon-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--neon-green);
-            z-index: 1;
-        }
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 15px;
-            bottom: -40px; /* Extend line down */
-            width: 3px;
-            background: var(--neon-green);
-        }
-        .timeline-item:last-child::after {
-            bottom: auto; /* Stop line at the last item */
-            height: calc(100% - 15px);
-        }
-        .dark-mode .timeline-item::before {
-            box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
-        }
+nav.scrolled {
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(5, 5, 8, 0.85);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
 
-        /* Custom bullet points for timeline */
-        .timeline-content-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 8px;
-            color: var(--white); /* Default for dark mode */
-        }
-        .light-mode .timeline-content-item {
-            color: var(--light-text);
-        }
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  background: var(--gradient-text);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s ease infinite;
+}
 
-        .timeline-bullet {
-            width: 20px;
-            height: 20px;
-            min-width: 20px; /* Prevent shrinking */
-            min-height: 20px; /* Prevent shrinking */
-            background-color: var(--neon-green);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 10px;
-            box-shadow: 0 0 5px var(--neon-green);
-            color: var(--midnight-blue); /* Tick color */
-            font-size: 0.8em;
-            flex-shrink: 0; /* Prevent the bullet from shrinking */
-        }
-        .light-mode .timeline-bullet {
-            color: var(--light-bg); /* Tick color in light mode */
-        }
+@keyframes shimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
+}
 
-        .timeline-content {
-            flex-grow: 1;
-            padding-top: 2px; /* Align text better with bullet */
-        }
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
 
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.3s;
+  position: relative;
+}
 
-        /* Project Card Hover Effect */
-        .project-card {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            background-color: var(--dark-card-bg);
-            border: 1px solid var(--dark-border);
-        }
-        .light-mode .project-card {
-            background-color: #e2e8f0;
-            border: 1px solid var(--light-border);
-        }
+.nav-links a:hover { color: var(--text-primary); }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-        .dark-mode .project-card:hover {
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 15px var(--neon-green);
-        }
-        .light-mode .project-card:hover {
-             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s var(--ease);
+}
 
-        /* Skill Badges */
-        .skill-badge {
-            display: inline-block;
-            background-color: var(--neon-green);
-            color: var(--midnight-blue);
-            padding: 8px 16px;
-            border-radius: 9999px;
-            margin: 5px;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.9em;
-            opacity: 0;
-            animation: fadeInScale 0.5s forwards;
-            box-shadow: 0 0 8px rgba(56, 178, 172, 0.5); /* Neon glow */
-        }
-        .project-card .bg-gray-700 { /* For project card tags */
-            background-color: var(--midnight-blue); /* Darker tags in dark mode */
-            color: var(--dark-text-secondary);
-        }
-        .light-mode .project-card .bg-gray-700 {
-            background-color: #CBD5E0; /* Lighter tags in light mode */
-            color: var(--light-text-secondary);
-        }
+.nav-links a:hover::after { width: 100%; }
 
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
+.nav-cta {
+  padding: 0.5rem 1.25rem !important;
+  border: 1px solid var(--accent) !important;
+  border-radius: 6px;
+  color: var(--accent) !important;
+  transition: all 0.3s !important;
+}
 
-        /* Floating Chatbot & Resume Matcher */
-        .floating-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--neon-green);
-            color: var(--midnight-blue);
-            padding: 15px 20px;
-            border-radius: 9999px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            z-index: 1000;
-            transition: background-color 0.3s;
-        }
+.nav-cta:hover {
+  background: var(--accent) !important;
+  color: white !important;
+}
 
-        .floating-button:hover {
-            background-color: #2c9a94;
-        }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
 
-        .chatbot-modal, .resume-matcher-modal, .cold-email-modal, .easter-egg-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: var(--midnight-blue);
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            z-index: 1001;
-            max-width: 90%;
-            width: 500px;
-            max-height: 80%;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid var(--neon-green); /* Neon border */
-            opacity: 0; /* For fade in effect */
-            transform: translate(-50%, -50%) scale(0.9); /* For scale in effect */
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-        }
-        .chatbot-modal.active, .resume-matcher-modal.active, .cold-email-modal.active, .easter-egg-modal.active {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--text-primary);
+  transition: all 0.3s;
+}
 
-        .light-mode .chatbot-modal, .light-mode .resume-matcher-modal, .light-mode .cold-email-modal, .light-mode .easter-egg-modal {
-            background-color: var(--light-bg);
-            border: 1px solid var(--light-accent);
-        }
+/* ═══════════════════════════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: calc(var(--nav-height) + 2rem) clamp(1.5rem, 4vw, 3rem) 4rem;
+  overflow: hidden;
+}
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background-color: rgba(56, 178, 172, 0.1); /* Subtle neon header */
-            border-bottom: 1px solid rgba(56, 178, 172, 0.3);
-            color: var(--white); /* Ensure header text is visible */
-        }
-        .light-mode .modal-header {
-            background-color: rgba(49, 130, 206, 0.1);
-            border-bottom: 1px solid rgba(49, 130, 206, 0.3);
-            color: var(--light-text);
-        }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
 
-        .modal-body {
-            padding: 20px;
-            overflow-y: auto;
-            flex-grow: 1;
-            color: var(--white); /* Ensure body text is visible */
-        }
-        .light-mode .modal-body {
-            color: var(--light-text);
-        }
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -20%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.08) 0%, transparent 70%);
+  animation: float-orb 20s ease-in-out infinite;
+}
 
-        .chat-messages {
-            min-height: 150px;
-            max-height: 300px;
-            overflow-y: auto;
-            padding: 10px;
-            border: 1px solid var(--dark-border);
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        .light-mode .chat-messages {
-            border: 1px solid var(--light-border);
-        }
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 212, 170, 0.06) 0%, transparent 70%);
+  animation: float-orb 15s ease-in-out infinite reverse;
+}
 
-        .chat-message {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            border-radius: 12px;
-            max-width: 80%;
-        }
+@keyframes float-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(50px, -30px) scale(1.05); }
+  66% { transform: translate(-30px, 20px) scale(0.95); }
+}
 
-        .chat-message.user {
-            background-color: var(--neon-green);
-            color: var(--midnight-blue);
-            align-self: flex-end;
-            margin-left: auto;
-            text-align: right;
-        }
+/* Grid lines background */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(108, 99, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108, 99, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
 
-        .chat-message.ai {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            align-self: flex-start;
-            margin-right: auto;
-            text-align: left;
-        }
-        .light-mode .chat-message.ai {
-            background-color: rgba(0, 0, 0, 0.05);
-            color: var(--light-text);
-        }
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
 
-        .chat-input-container {
-            display: flex;
-            padding-top: 15px;
-            border-top: 1px solid rgba(56, 178, 172, 0.3);
-        }
-        .light-mode .chat-input-container {
-             border-top: 1px solid rgba(49, 130, 206, 0.3);
-        }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: var(--accent-dim);
+  border: 1px solid rgba(108, 99, 255, 0.15);
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent-light);
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s var(--ease) both;
+}
 
-        .chat-input-container input, .chat-input-container textarea {
-            flex-grow: 1;
-            padding: 10px 15px;
-            border-radius: 20px;
-            border: 1px solid var(--dark-border);
-            background-color: rgba(0, 0, 0, 0.1);
-            color: var(--white);
-        }
-        .light-mode .chat-input-container input, .light-mode .chat-input-container textarea {
-            border: 1px solid var(--light-border);
-            background-color: rgba(255, 255, 255, 0.7);
-            color: var(--light-text);
-        }
+.hero-badge .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-2);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease infinite;
+}
 
-        /* Placeholder styling for inputs and textareas */
-        .chat-input-container input::placeholder,
-        .chat-input-container textarea::placeholder,
-        .job-description-input::placeholder {
-            color: rgba(255, 255, 255, 0.5); /* Lighter placeholder for dark mode */
-        }
-        .light-mode .chat-input-container input::placeholder,
-        .light-mode .chat-input-container textarea::placeholder,
-        .light-mode .job-description-input::placeholder {
-            color: rgba(0, 0, 0, 0.5); /* Darker placeholder for light mode */
-        }
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
 
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s var(--ease) 0.1s both;
+}
 
-        .chat-input-container button {
-            background-color: var(--neon-green);
-            color: var(--midnight-blue);
-            padding: 10px 15px;
-            border-radius: 20px;
-            margin-left: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.hero h1 .name-highlight {
+  background: var(--gradient-text);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s ease infinite;
+}
 
-        .chat-input-container button:hover {
-            background-color: #2c9a94;
-        }
+.hero h1 .title-line {
+  display: block;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin-top: 0.75rem;
+}
 
-        .job-description-input {
-            width: 100%;
-            height: 150px;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid var(--dark-border);
-            background-color: rgba(0, 0, 0, 0.1);
-            color: var(--white);
-            resize: vertical;
-        }
-        .light-mode .job-description-input {
-            border: 1px solid var(--light-border);
-            background-color: rgba(255, 255, 255, 0.7);
-            color: var(--light-text);
-        }
+.hero-description {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--text-secondary);
+  max-width: 640px;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  animation: fadeInUp 0.8s var(--ease) 0.2s both;
+}
 
-        .match-results {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            background-color: rgba(56, 178, 172, 0.1);
-            border: 1px solid rgba(56, 178, 172, 0.3);
-        }
-        .light-mode .match-results {
-            background-color: rgba(49, 130, 206, 0.1);
-            border: 1px solid rgba(49, 130, 206, 0.3);
-        }
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s var(--ease) 0.3s both;
+}
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .chatbot-modal, .resume-matcher-modal, .cold-email-modal, .easter-egg-modal {
-                width: 95%;
-                max-width: none;
-            }
-            .floating-button {
-                bottom: 10px;
-                right: 10px;
-                padding: 12px 18px;
-                font-size: 0.9em;
-            }
-        }
-        .loading-spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid var(--neon-green);
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            margin-left: 10px;
-        }
-        .light-mode .loading-spinner {
-            border-color: rgba(0, 0, 0, 0.3);
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: var(--accent);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3);
+}
 
-        /* Certifications List Style */
-        .certifications-list {
-            list-style: none; /* Remove default list style */
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px; /* Spacing between certification items */
-        }
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(108, 99, 255, 0.4);
+}
 
-        .certifications-list-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: calc(33% - 20px); /* 3 items per row, accounting for gap */
-            min-width: 280px; /* Ensure readability on smaller screens */
-            max-width: 320px;
-            padding: 20px;
-            background-color: var(--dark-card-bg); /* Reuse card background */
-            border: 1px solid var(--dark-border);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
 
-        .light-mode .certifications-list-item {
-            background-color: #e2e8f0;
-            border: 1px solid var(--light-border);
-        }
+.btn-outline:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
 
-        .certifications-list-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 10px var(--neon-green);
-        }
-        .light-mode .certifications-list-item:hover {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+  animation: fadeInUp 0.8s var(--ease) 0.4s both;
+}
 
-        .cert-icon {
-            font-size: 3em;
-            color: var(--neon-green);
-            margin-bottom: 15px;
-        }
-        .light-mode .cert-icon {
-            color: var(--light-accent);
-        }
+.hero-stat .stat-number {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
 
-        .cert-details {
-            flex-grow: 1;
-            color: var(--white);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .light-mode .cert-details {
-            color: var(--light-text);
-        }
+.hero-stat .stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
 
-        .cert-title {
-            font-weight: 600;
-            color: var(--neon-green);
-            font-size: 1.2em;
-            margin-bottom: 5px;
-        }
-        .light-mode .cert-title {
-            color: var(--light-accent);
-        }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-        .cert-issuer-date {
-            color: var(--dark-text-secondary);
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-        .light-mode .cert-issuer-date {
-            color: var(--light-text-secondary);
-        }
+/* ═══════════════════════════════════════════════════════════
+   SECTION STYLES (shared)
+   ═══════════════════════════════════════════════════════════ */
+section {
+  padding: 6rem clamp(1.5rem, 4vw, 3rem);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
 
-        .cert-skills {
-            margin-top: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 5px;
-        }
-        .cert-skills .skill-badge {
-            background-color: rgba(56, 178, 172, 0.2);
-            color: var(--neon-green);
-            border: 1px solid var(--neon-green);
-            padding: 5px 10px;
-            font-size: 0.8em;
-            box-shadow: none; /* Remove glow for smaller badges */
-        }
-        .light-mode .cert-skills .skill-badge {
-            background-color: rgba(49, 130, 206, 0.1);
-            color: var(--light-accent);
-            border: 1px solid var(--light-accent);
-        }
-        .cert-link {
-            color: var(--neon-green);
-            font-size: 0.9em;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-        }
-        .cert-link:hover {
-            text-decoration: underline;
-        }
-        .cert-link i {
-            margin-left: 5px;
-        }
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
 
-        /* Responsive adjustments for certifications */
-        @media (max-width: 1024px) {
-            .certifications-list-item {
-                width: calc(50% - 20px); /* 2 items per row */
-            }
-        }
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
 
-        @media (max-width: 640px) {
-            .certifications-list-item {
-                width: 90%; /* 1 item per row on very small screens */
-            }
-        }
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 3.5rem;
+}
 
-    </style>
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s var(--ease);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ABOUT SECTION
+   ═══════════════════════════════════════════════════════════ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+}
+
+.about-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.about-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.highlight-card {
+  padding: 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.highlight-card:hover {
+  border-color: var(--accent);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.highlight-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.highlight-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.highlight-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 0.15rem;
+}
+
+/* Terminal */
+.terminal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid var(--border);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-hover);
+}
+
+.terminal-dot:nth-child(1) { background: #ff5f57; }
+.terminal-dot:nth-child(2) { background: #febc2e; }
+.terminal-dot:nth-child(3) { background: #28c840; }
+
+.terminal-title {
+  margin-left: 8px;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.terminal-body {
+  padding: 1.25rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.terminal-body .prompt { color: var(--accent-2); font-weight: 500; }
+.terminal-body .comment { color: var(--text-muted); font-style: italic; }
+.terminal-body .string { color: var(--accent-warm); }
+.terminal-body .keyword { color: var(--accent); }
+.terminal-body .output { color: var(--text-primary); }
+
+/* ═══════════════════════════════════════════════════════════
+   EXPERIENCE SECTION
+   ═══════════════════════════════════════════════════════════ */
+.timeline {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-2), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.625rem;
+  top: 0.5rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg-primary);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-role {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.timeline-company {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.timeline-company a {
+  color: var(--accent-light);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.timeline-company a:hover { border-color: var(--accent-light); }
+
+.timeline-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  max-width: 680px;
+}
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.timeline-tag {
+  padding: 0.25rem 0.75rem;
+  background: var(--accent-dim);
+  border: 1px solid rgba(108, 99, 255, 0.1);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  color: var(--accent-light);
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EDUCATION SECTION
+   ═══════════════════════════════════════════════════════════ */
+.education-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.edu-card {
+  padding: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.edu-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.edu-card:hover::before { opacity: 1; }
+
+.edu-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.edu-degree {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.edu-institution {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.edu-location {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.edu-details {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PROJECTS SECTION
+   ═══════════════════════════════════════════════════════════ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.4s var(--ease);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.3);
+}
+
+.project-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 1.25rem;
+}
+
+.project-card:nth-child(1) .project-icon { background: var(--accent-dim); }
+.project-card:nth-child(2) .project-icon { background: var(--accent-2-dim); }
+.project-card:nth-child(3) .project-icon { background: rgba(255,107,107,0.08); }
+.project-card:nth-child(4) .project-icon { background: rgba(245,166,35,0.08); }
+.project-card:nth-child(5) .project-icon { background: var(--accent-dim); }
+.project-card:nth-child(6) .project-icon { background: var(--accent-2-dim); }
+
+.project-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 1.25rem;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.project-tech span {
+  padding: 0.2rem 0.6rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SKILLS SECTION
+   ═══════════════════════════════════════════════════════════ */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-group {
+  padding: 1.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.3s;
+}
+
+.skill-group:hover {
+  border-color: var(--border-hover);
+}
+
+.skill-group-icon {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.skill-group-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-pill {
+  padding: 0.3rem 0.75rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  transition: all 0.3s;
+}
+
+.skill-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+  background: var(--accent-dim);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESEARCH SECTION
+   ═══════════════════════════════════════════════════════════ */
+.research-card {
+  padding: 2.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
+}
+
+.research-card:hover {
+  border-color: var(--border-hover);
+}
+
+.research-tag {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  background: var(--accent-dim);
+  border-radius: 50px;
+  font-size: 0.72rem;
+  color: var(--accent-light);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.research-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.research-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.research-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SERVICES SECTION
+   ═══════════════════════════════════════════════════════════ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.service-card {
+  padding: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.4s var(--ease);
+}
+
+.service-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(108, 99, 255, 0.1);
+}
+
+.service-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.service-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.service-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CONTACT SECTION
+   ═══════════════════════════════════════════════════════════ */
+.contact-section {
+  text-align: center;
+  padding: 8rem clamp(1.5rem, 4vw, 3rem);
+  position: relative;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.contact-links-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.contact-link:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  transform: translateY(-2px);
+}
+
+.contact-link svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--text-secondary);
+}
+
+.contact-link:hover svg { fill: var(--accent-light); }
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════ */
+footer {
+  text-align: center;
+  padding: 3rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+footer span { color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .hero-stats {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--bg-secondary);
+    flex-direction: column;
+    padding: 5rem 2rem 2rem;
+    gap: 1.5rem;
+    border-left: 1px solid var(--border);
+    transition: right 0.4s var(--ease);
+    box-shadow: -20px 0 60px rgba(0,0,0,0.5);
+  }
+
+  .nav-links.open { right: 0; }
+  .hamburger { display: flex; }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .hero-stat { flex: 0 0 calc(50% - 0.75rem); }
+
+  .projects-grid { grid-template-columns: 1fr; }
+  .education-cards { grid-template-columns: 1fr; }
+
+  .about-highlights { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2.5rem; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+}
+</style>
 </head>
-<body class="dark-mode">
-    <!-- Particle Background Canvas -->
-    <canvas id="particle-canvas" class="particle-canvas"></canvas>
 
-    <!-- Theme Toggle Button -->
-    <button id="theme-toggle" class="fixed top-4 right-4 z-50 p-3 rounded-full bg-gray-700 text-white shadow-lg transition-colors duration-300">
-        <i class="fas fa-sun" id="theme-icon"></i>
-    </button>
+<body>
 
-    <!-- Chatbot Floating Button -->
-    <button id="chatbot-float-btn" class="floating-button flex items-center space-x-2">
-        <i class="fas fa-comment-dots"></i>
-        <span>Chat with My Resume</span>
-    </button>
+<!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">MS.</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-    <!-- Resume Matcher Floating Button (initially hidden, triggered by scroll/CTA) -->
-    <button id="resume-matcher-float-btn" class="floating-button right-auto left-20 hidden flex items-center space-x-2">
-        <i class="fas fa-clipboard-check"></i>
-        <span>Resume Matcher</span>
-    </button>
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Available for collaboration & consulting
+    </div>
+    <h1>
+      <span class="name-highlight">Muhammad Sohail</span>
+      <span class="title-line">Data & AI Engineer — Building Production AI Systems</span>
+    </h1>
+    <p class="hero-description">
+      I architect and deploy enterprise-grade AI infrastructure — from RAG-based chatbots serving hundreds of university staff to GPU-optimized LLM serving on dual NVIDIA L40S systems. Currently engineering production AI at Université d'Évry Paris-Saclay.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Get in Touch
+      </a>
+      <a href="https://github.com/CallSohail" target="_blank" class="btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+        View GitHub
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-number">2+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Production Systems</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Users Served</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-number">2×L40S</div>
+        <div class="stat-label">GPU Infrastructure</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Chatbot Modal -->
-    <div id="chatbot-modal" class="chatbot-modal">
-        <div class="modal-header">
-            <h3 class="text-xl font-bold">AI Chatbot</h3>
-            <button class="close-modal text-gray-400 hover:text-white text-2xl">&times;</button>
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
+<section id="about">
+  <div class="section-label reveal">About</div>
+  <h2 class="section-title reveal">Engineer, Not a Demo Builder</h2>
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="about-text">
+        I'm <strong>Muhammad Sohail</strong>, a Data & AI Engineer at <strong>Université d'Évry Paris-Saclay</strong> and a Master's graduate in Data Science & Network Intelligence from <strong>Télécom SudParis / Institut Polytechnique de Paris</strong>.
+      </p>
+      <p class="about-text">
+        Originally from <strong>Pakistan</strong> and now based in <strong>France</strong>, I manage production AI infrastructure — from RAG-based chatbots serving HR and IT departments to GPU-optimized model serving with vLLM on dual NVIDIA L40S systems. I build Docker-containerized AI applications with comprehensive observability using OpenTelemetry & Grafana, and develop enterprise-grade integrations including MCP servers, Zimbra email tools, and GitLab assistants.
+      </p>
+      <p class="about-text">
+        I focus on <strong>shipping AI that works reliably at scale</strong> — not proof-of-concepts.
+      </p>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <div class="highlight-icon">📍</div>
+          <div class="highlight-label">Location</div>
+          <div class="highlight-value">Évry, France</div>
         </div>
-        <div class="modal-body flex flex-col h-full">
-            <div id="chat-messages" class="chat-messages flex flex-col space-y-3">
-                <div class="chat-message ai">Hello! I'm Muhammad's AI assistant. Ask me anything about his resume!</div>
-            </div>
-            <div class="chat-input-container">
-                <input type="text" id="chat-input" placeholder="Ask a question..." class="rounded-full px-4 py-2 text-white">
-                <button id="send-chat-btn" class="rounded-full px-4 py-2 flex items-center justify-center">
-                    Send <div id="chat-loading-spinner" class="loading-spinner hidden"></div>
-                </button>
-            </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🎓</div>
+          <div class="highlight-label">Education</div>
+          <div class="highlight-value">M.Sc. IP Paris</div>
         </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🌍</div>
+          <div class="highlight-label">Languages</div>
+          <div class="highlight-value">English, Urdu, Pashto, French</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🏢</div>
+          <div class="highlight-label">Department</div>
+          <div class="highlight-value">DSIN, Paris-Saclay</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="terminal">
+        <div class="terminal-header">
+          <div class="terminal-dot"></div>
+          <div class="terminal-dot"></div>
+          <div class="terminal-dot"></div>
+          <span class="terminal-title">sohail@ia-server ~ $</span>
+        </div>
+        <div class="terminal-body">
+          <span class="comment"># Production stack status</span><br>
+          <span class="prompt">$</span> docker ps --format <span class="string">"{{.Names}}"</span><br>
+          <span class="output">openwebui-v0.7.2</span><br>
+          <span class="output">vllm-l40s-serving</span><br>
+          <span class="output">ragflow-processor</span><br>
+          <span class="output">otel-collector</span><br>
+          <span class="output">grafana-monitoring</span><br>
+          <span class="output">postgres-production</span><br>
+          <span class="output">faster-whisper-transcription</span><br><br>
+          <span class="comment"># GPU utilization</span><br>
+          <span class="prompt">$</span> nvidia-smi --query-gpu=name<br>
+          <span class="output">NVIDIA L40S × 2</span><br>
+          <span class="output">Memory: <span class="keyword">94%</span> allocated</span><br>
+          <span class="output">Status: <span class="keyword">serving</span> ✓</span><br><br>
+          <span class="comment"># Active models</span><br>
+          <span class="prompt">$</span> curl localhost:8000/v1/models<br>
+          <span class="output">→ gpt-oss-20b <span class="keyword">[loaded]</span></span><br>
+          <span class="output">→ vision-model <span class="keyword">[loaded]</span></span><br>
+          <span class="output">→ embedding-model <span class="keyword">[loaded]</span></span><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ EXPERIENCE ═══════════════════ -->
+<section id="experience">
+  <div class="section-label reveal">Experience</div>
+  <h2 class="section-title reveal">Where I've Shipped</h2>
+  <p class="section-subtitle reveal">Production systems, real users, measurable impact.</p>
+
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-date">SEP 2025 — PRESENT</div>
+      <div class="timeline-role">Data & AI Engineer</div>
+      <div class="timeline-company"><a href="https://www.universite-paris-saclay.fr/" target="_blank">Université d'Évry Paris-Saclay</a> · DSIN · Évry, France</div>
+      <div class="timeline-desc">
+        Managing production AI infrastructure serving 500+ university staff. Deployed RAG chatbots for HR and IT departments with sub-second response times. Built GPU-optimized model serving with vLLM on dual NVIDIA L40S systems. Engineered OpenWebUI deployments with custom pipelines, MCP server integrations, and comprehensive monitoring with OpenTelemetry & Grafana. Migrated databases from SQLite to PostgreSQL for production scalability. Developed automated transcription systems for BigBlueButton meetings using Faster-Whisper. Created Zimbra email management, GitLab smart assistant, and university-specific tool integrations.
+      </div>
+      <div class="timeline-tags">
+        <span class="timeline-tag">vLLM</span>
+        <span class="timeline-tag">RAG</span>
+        <span class="timeline-tag">OpenWebUI</span>
+        <span class="timeline-tag">Docker</span>
+        <span class="timeline-tag">NVIDIA L40S</span>
+        <span class="timeline-tag">PostgreSQL</span>
+        <span class="timeline-tag">OTEL</span>
+        <span class="timeline-tag">Grafana</span>
+        <span class="timeline-tag">MCP</span>
+      </div>
     </div>
 
-    <!-- Resume Matcher Modal -->
-    <div id="resume-matcher-modal" class="resume-matcher-modal">
-        <div class="modal-header">
-            <h3 class="text-xl font-bold">Resume Matcher Tool</h3>
-            <button class="close-modal text-gray-400 hover:text-white text-2xl">&times;</button>
-        </div>
-        <div class="modal-body">
-            <p class="mb-4">Paste your job description here and instantly see how well Muhammad’s profile fits!</p>
-            <textarea id="job-description-input" class="job-description-input" placeholder="Paste job description here..."></textarea>
-            <button id="analyze-jd-btn" class="mt-4 px-6 py-3 bg-neon-green text-midnight-blue rounded-full hover:bg-teal-600 transition-colors flex items-center justify-center">
-                Analyze <div id="jd-loading-spinner" class="loading-spinner hidden"></div>
-            </button>
-            <div id="match-results" class="match-results mt-5 hidden">
-                <h4 class="font-semibold text-lg mb-2">Match Analysis:</h4>
-                <p><strong>Match Score:</strong> <span id="match-score"></span>%</p>
-                <p><strong>Top Matching Keywords:</strong> <span id="matched-keywords"></span></p>
-                <p><strong>Why this profile is a good fit:</strong> <span id="fit-summary"></span></p>
-            </div>
-        </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-date">MAR 2025 — AUG 2025</div>
+      <div class="timeline-role">AI & Data Science Intern</div>
+      <div class="timeline-company"><a href="https://www.universite-paris-saclay.fr/" target="_blank">Université d'Évry Paris-Saclay</a> · Évry, France</div>
+      <div class="timeline-desc">
+        Designed and developed an intelligent HR chatbot prototype using LLMs and Retrieval-Augmented Generation (RAG) to automate staff inquiries on recruitment, training, leave policies, and regulatory compliance. Implemented validation mechanisms ensuring compliance with institutional policies. Built multimodal document processing pipelines using vision-language models, improving content extraction from complex PDFs (tables, charts, images) from 60% to 95%.
+      </div>
+      <div class="timeline-tags">
+        <span class="timeline-tag">LLMs</span>
+        <span class="timeline-tag">RAG</span>
+        <span class="timeline-tag">LangChain</span>
+        <span class="timeline-tag">RAGFlow</span>
+        <span class="timeline-tag">Python</span>
+        <span class="timeline-tag">FAISS</span>
+      </div>
     </div>
 
-    <!-- Easter Egg Modal -->
-    <div id="easter-egg-modal" class="easter-egg-modal">
-        <h3 class="text-xl font-bold mb-4">Muhammad's Favorite Open-Source LLMs</h3>
-        <ul class="list-disc list-inside text-left mx-auto max-w-max">
-            <li>Llama</li>
-            <li>Mistral-7B</li>
-            <li>Falcon</li>
-            <li>Gemma</li>
-        </ul>
-        <button class="close-modal mt-6 px-4 py-2 bg-neon-green text-midnight-blue rounded-full hover:bg-teal-600">Close</button>
+    <div class="timeline-item reveal">
+      <div class="timeline-date">OCT 2023 — APR 2024</div>
+      <div class="timeline-role">Data Analyst Intern</div>
+      <div class="timeline-company"><a href="https://codeclause.com" target="_blank">CodeClause</a> · Remote</div>
+      <div class="timeline-desc">
+        Developed predictive machine learning models, improving data-driven decision-making by 30%. Automated data pipelines using Python, Pandas, and SQL, reducing data processing time by 25%. Designed interactive data visualizations using Matplotlib and Seaborn to present business insights to stakeholders.
+      </div>
+      <div class="timeline-tags">
+        <span class="timeline-tag">Python</span>
+        <span class="timeline-tag">Pandas</span>
+        <span class="timeline-tag">SQL</span>
+        <span class="timeline-tag">ML</span>
+        <span class="timeline-tag">Visualization</span>
+      </div>
     </div>
 
-    <div class="container mx-auto p-4 md:p-8">
-        <!-- Hero Section -->
-        <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center">
-            <img src="https://i.ibb.co/84BZsFhc/1729600793626.jpg" alt="Muhammad Sohail Profile Picture" class="w-32 h-32 rounded-full mb-6 mx-auto object-cover border-4 border-neon-green shadow-lg">
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 audiowide-regular">Muhammad Sohail</h1>
-            <p id="dynamic-tagline" class="text-xl md:text-2xl text-gray-300 mb-6">Loading intelligent insights...</p>
-            <p id="animated-subtitle" class="animated-subtitle text-2xl md:text-4xl font-mono text-neon-green mb-8">
-                <span style="animation-delay: 0s;">Data Science Intern</span> <span style="animation-delay: 0.2s;">|</span>
-                <span style="animation-delay: 0.4s;">ML Developer</span> <span style="animation-delay: 0.6s;">|</span>
-                <span style="animation-delay: 0.8s;">LLM Enthusiast</span>
-            </p>
-            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="https://drive.google.com/file/d/1OxmD0QWmGYYe4H7ExnykNhqJviGBDFSu/view?usp=sharing" target="_blank" class="px-8 py-3 bg-neon-green text-midnight-blue rounded-full shadow-lg hover:bg-teal-600 transition duration-300">
-                    View Resume
-                </a>
-                <a href="#contact" class="px-8 py-3 border-2 border-neon-green text-neon-green rounded-full shadow-lg hover:bg-neon-green hover:text-midnight-blue transition duration-300">
-                    Let’s Talk
-                </a>
-                <button id="hero-chatbot-btn" class="px-8 py-3 border-2 border-neon-green text-neon-green rounded-full shadow-lg hover:bg-neon-green hover:text-midnight-blue transition duration-300">
-                    Try AI Chatbot
-                </button>
-            </div>
-        </section>
+    <div class="timeline-item reveal">
+      <div class="timeline-date">JAN 2023 — SEP 2023</div>
+      <div class="timeline-role">Freelance Web & Data Solutions Consultant</div>
+      <div class="timeline-company">Upwork & Fiverr · Remote</div>
+      <div class="timeline-desc">
+        Built interactive websites and data dashboards for international clients. Designed and deployed data reporting tools using Python. Optimized data pipelines using ETL tools. Provided analytics support for marketing and e-commerce clients across diverse markets.
+      </div>
+      <div class="timeline-tags">
+        <span class="timeline-tag">Python</span>
+        <span class="timeline-tag">Dashboards</span>
+        <span class="timeline-tag">ETL</span>
+        <span class="timeline-tag">Web Dev</span>
+        <span class="timeline-tag">Consulting</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- About Me Section -->
-        <section id="about" class="py-20">
-            <h2 class="section-title text-4xl font-bold mb-10 text-center">About Me</h2>
-            <div class="max-w-3xl mx-auto text-lg leading-relaxed text-center">
-                <p class="mb-4">
-                    I'm Muhammad Sohail, a passionate Data Scientist and ML Developer with a keen interest in building intelligent solutions.
-                    My expertise spans across <span class="font-bold text-neon-green">Python</span>, advanced machine learning techniques,
-                    and cutting-edge <span class="font-bold text-neon-green">Large Language Models (LLMs)</span>. I thrive on
-                    <span class="font-bold text-neon-green">Data Preprocessing</span>, <span class="font-bold text-neon-green">Model Training</span>,
-                    and creating powerful <span class="font-bold text-neon-green">Chatbots</span>.
-                </p>
-                <p class="mb-4">
-                    I am currently pursuing my <span class="font-bold text-neon-green">MSc M2 in Data Science and Network Intelligence</span> at
-                    <span class="font-bold text-neon-green">Institut Polytechnique de Paris, France</span>. My coursework includes Data Science, Data Visualization, Deep Learning, Blockchain, Network Intelligence, Internet of Things (IoT), Distributed Networking, and Business Modelling.
-                </p>
-                <p class="mb-4">
-                    I also hold a <span class="font-bold text-neon-green">Bachelor of Computer Science</span> from the <span class="font-bold text-neon-green">University of Malakand, Pakistan</span> (Aug 2019 - Sep 2023, GPA-3.75), where my coursework covered Programming Languages, Web Development, Database Management, Operating Systems, Networking, Software Engineering, AI, Mathematics, and Statistics.
-                </p>
-                <p class="mb-4">
-                    <span class="font-bold text-neon-green">Languages:</span> English (Fluent), Pashto (Native/Bilingual), Urdu (Native/Bilingual), French (Basic).
-                </p>
-                <p class="text-gray-400">
-                    <i class="fas fa-star text-neon-green mr-2"></i>Fun Fact: I love turning complex systems into simple, elegant solutions that deliver real-world impact.
-                </p>
-            </div>
-        </section>
+<!-- ═══════════════════ EDUCATION ═══════════════════ -->
+<section id="education">
+  <div class="section-label reveal">Education</div>
+  <h2 class="section-title reveal">Academic Foundation</h2>
+  <p class="section-subtitle reveal">From Pakistan to Paris — a journey driven by curiosity.</p>
 
-        <!-- Education Timeline Section -->
-        <section id="education" class="py-20">
-            <h2 class="section-title text-4xl font-bold mb-10 text-center">Education Timeline</h2>
-            <div class="max-w-3xl mx-auto">
-                <div class="timeline-item">
-                    <h3 class="text-2xl font-semibold text-neon-green">MSc M2 in Data Science and Network Intelligence</h3>
-                    <p class="text-xl mb-2">Institut Polytechnique de Paris, France | Sep 2024 - Current</p>
-                    <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">GPA: 15.81</p>
-                    </div>
-                    <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">Coursework: Data Science, Data Visualization, Deep Learning, Blockchain, Network Intelligence, Internet of Things (IoT), Distributed Networking, Business Modelling.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <h3 class="text-2xl font-semibold text-neon-green">Bachelor of Computer Science</h3>
-                    <p class="text-xl mb-2">University of Malakand, Pakistan | Aug 2019 - Sep 2023</p>
-                     <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">GPA: 3.75</p>
-                    </div>
-                    <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">Coursework: Programming Languages, Web Development, Database Management, Operating Systems, Networking, Software Engineering, AI, Mathematics, and Statistics.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Timeline Section -->
-        <section id="experience" class="py-20">
-            <h2 class="section-title text-4xl font-bold mb-10 text-center">Experience Timeline</h2>
-            <div class="max-w-3xl mx-auto">
-                <div class="timeline-item">
-                    <h3 class="text-2xl font-semibold text-neon-green">Data Science Intern</h3>
-                    <p class="text-xl mb-2">Université Paris-Saclay | Mar 2025 - Present</p>
-                    <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">Developing an intelligent HR chatbot using LLMs and Retrieval-Augmented Generation (RAG) to automate staff inquiries on recruitment, leave, and training.</p>
-                    </div>
-                    <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">Implementing robust validation mechanisms to ensure accurate and policy-compliant responses.</p>
-                    </div>
-                    <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">Designing a user-friendly interface using Streamlit and Gradio, deployed within the university's internal data center.</p>
-                    </div>
-                    <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">Leveraging tools like Unstructured.io, Docling, LlamaParse, pdfplumber, and LangChain for document parsing and knowledge extraction.</p>
-                    </div>
-                    <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">Using open-source models such as LLaMA, Mistral, and others for generating contextual answers via API integration.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <h3 class="text-2xl font-semibold text-neon-green">Data Analyst Intern (Remote)</h3>
-                    <p class="text-xl mb-2">Code Clause Pvt Ltd. | Oct 2023 - Apr 2024</p>
-                    <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">Led data preparation tasks, including handling missing values and standardizing data for accurate analysis.</p>
-                    </div>
-                    <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">Applied advanced statistical techniques (e.g., linear regression, hypothesis testing) to uncover insights and support decision-making.</p>
-                    </div>
-                    <div class="timeline-content-item">
-                        <span class="timeline-bullet"><i class="fas fa-check"></i></span>
-                        <p class="timeline-content">Delivered actionable insights via dashboards and reports, enhancing stakeholder understanding and driving strategic decisions.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Gallery Section -->
-        <section id="projects" class="py-20">
-            <h2 class="section-title text-4xl font-bold mb-10 text-center">Projects Gallery</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- HR Chatbot Card -->
-                <div class="project-card rounded-xl p-6 shadow-lg">
-                    <h3 class="text-2xl font-semibold mb-3 text-neon-green">HR Chatbot</h3>
-                    <p class="text-gray-300 mb-4">Intelligent HR chatbot for automating staff inquiries using LLMs and RAG.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">LangChain</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">LLaMA</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Gradio</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">RAG</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="#" target="_blank" class="text-neon-green hover:underline">GitHub <i class="fab fa-github ml-1"></i></a>
-                        <button class="expand-project text-neon-green hover:underline" data-project="hr-chatbot">Read More</button>
-                    </div>
-                    <div id="hr-chatbot-summary" class="hidden mt-4 text-sm text-gray-400">
-                        Detailed summary: This project involved the development of an HR chatbot capable of automating staff inquiries related to recruitment, leave, and training. It leverages advanced LLMs and Retrieval-Augmented Generation (RAG) to ensure contextual and accurate responses. Robust validation mechanisms were implemented for policy compliance. Tools used include Unstructured.io, Docling, LlamaParse, and pdfplumber for document parsing and knowledge extraction.
-                    </div>
-                </div>
-
-                <!-- MediBot Card -->
-                <div class="project-card rounded-xl p-6 shadow-lg">
-                    <h3 class="text-2xl font-semibold mb-3 text-neon-green">MediBot</h3>
-                    <p class="text-gray-300 mb-4">AI-powered medical chatbot for retrieving trusted medical information.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">LangChain</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">FAISS</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Mistral-7B</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="#" target="_blank" class="text-neon-green hover:underline">GitHub <i class="fab fa-github ml-1"></i></a>
-                        <button class="expand-project text-neon-green hover:underline" data-project="medibot">Read More</button>
-                    </div>
-                    <div id="medibot-summary" class="hidden mt-4 text-sm text-gray-400">
-                        Detailed summary: Built an AI-powered medical chatbot that retrieves trusted medical information using a context-based retrieval system. Tools Used: Python, LangChain, FAISS, Hugging Face, Mistral-7B, Streamlit, Hugging Face Spaces.
-                    </div>
-                </div>
-
-                <!-- Emotion Detection Card -->
-                <div class="project-card rounded-xl p-6 shadow-lg">
-                    <h3 class="text-2xl font-semibold mb-3 text-neon-green">Emotion Detection</h3>
-                    <p class="text-gray-300 mb-4">System to detect perceived emotions in text using deep learning.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">TensorFlow</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Keras</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">PyTorch</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">NLTK</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">SpaCy</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="#" target="_blank" class="text-neon-green hover:underline">GitHub <i class="fab fa-github ml-1"></i></a>
-                        <button class="expand-project text-neon-green hover:underline" data-project="emotion-detection">Read More</button>
-                    </div>
-                    <div id="emotion-detection-summary" class="hidden mt-4 text-sm text-gray-400">
-                        Detailed summary: Developed a system to detect perceived emotions in text using deep learning algorithms, enabling multi-label emotion classification and intensity estimation. This task focuses on detecting perceived emotions in text, including predicting emotions (joy, sadness, fear, anger, surprise, disgust), estimating emotion intensity, and cross-lingual emotion detection. The dataset covers a variety of languages, highlighting the complexity of interpreting emotions across cultures. Skills: Deep Learning · TensorFlow · Keras · PyTorch · Natural Language Processing: NLTK, SpaCy, Transformers · Data Processing: Pandas, NumPy · Visualization: Matplotlib, Seaborn · Deployment: Streamlit.
-                    </div>
-                </div>
-
-                <!-- Parkinson Predictor Card -->
-                <div class="project-card rounded-xl p-6 shadow-lg">
-                    <h3 class="text-2xl font-semibold mb-3 text-neon-green">Parkinson Predictor</h3>
-                    <p class="text-gray-300 mb-4">Machine learning system for Parkinson's disease progression prediction.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Scikit-learn</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">XGBoost</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Streamlit</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="#" target="_blank" class="text-neon-green hover:underline">GitHub <i class="fab fa-github ml-1"></i></a>
-                        <button class="expand-project text-neon-green hover:underline" data-project="parkinson-predictor">Read More</button>
-                    </div>
-                    <div id="parkinson-predictor-summary" class="hidden mt-4 text-sm text-gray-400">
-                        Detailed summary: This machine learning system identifies subtypes of Parkinson's disease and predicts disease progression using clinical and genetic data. Tools like Python, Pandas, Scikit-learn, XGBoost, LightGBM, and Streamlit were used to develop and present the predictive models.
-                    </div>
-                </div>
-
-                <!-- Basic Image Classification with Tensorflow Card -->
-                <div class="project-card rounded-xl p-6 shadow-lg">
-                    <h3 class="text-2xl font-semibold mb-3 text-neon-green">Basic Image Classification with Tensorflow</h3>
-                    <p class="text-gray-300 mb-4">A simple image classifier using TensorFlow and CNNs.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">TensorFlow</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Keras</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">CNN</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Python</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="https://github.com/CallSohail/Basic-Image-Classification-With-Tensorflow" target="_blank" class="text-neon-green hover:underline">GitHub <i class="fab fa-github ml-1"></i></a>
-                        <button class="expand-project text-neon-green hover:underline" data-project="image-classification">Read More</button>
-                    </div>
-                    <div id="image-classification-summary" class="hidden mt-4 text-sm text-gray-400">
-                        Detailed summary: I built a simple image classifier using TensorFlow. The model distinguishes between image categories using a convolutional neural network (CNN). I preprocessed the image data—resizing, normalizing, and even augmenting to boost performance. The CNN, built with TensorFlow’s Keras API, learned to identify key features in images. Techniques like dropout and pooling were used to improve accuracy and reduce overfitting. This project sharpened my skills in deep learning and model evaluation, provided hands-on experience in tuning hyperparameters and troubleshooting model performance, and was a great step in my journey into AI."
-                    </div>
-                </div>
-
-                <!-- Dynamic Cooling System in Data Centers Using IoT & LSTM Card -->
-                <div class="project-card rounded-xl p-6 shadow-lg">
-                    <h3 class="text-2xl font-semibold mb-3 text-neon-green">Dynamic Cooling System in Data Centers Using IoT & LSTM</h3>
-                    <p class="text-gray-300 mb-4">IoT-powered dynamic cooling system for data centers.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">IoT</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">LSTM</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Predictive Analytics</span>
-                        <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Energy Efficiency</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="https://drive.google.com/file/d/19cPWUFmizD4H7woCS7pQ2Xb_430EDupi/view?usp=sharing&usp=embed_facebook" target="_blank" class="text-neon-green hover:underline">Drive Link <i class="fas fa-link ml-1"></i></a>
-                        <button class="expand-project text-neon-green hover:underline" data-project="cooling-system">Read More</button>
-                    </div>
-                    <div id="cooling-system-summary" class="hidden mt-4 text-sm text-gray-400">
-                        Detailed summary: Developed a dynamic cooling system for data centers that combines air and liquid cooling. The system adjusts in real time based on sensor data. IoT sensors collect temperature, humidity, and energy data, and an LSTM neural network processes this information to predict cooling needs. Benefits include optimizing energy consumption, reducing carbon footprint, and enhancing system reliability and equipment lifespan. This project features a robust, multi-tier architecture with data collection, edge processing, central decision-making, and actuator control. Completed as part of my Master’s program at Telecom SudParis, it showcases my ability to integrate predictive analytics and smart systems to drive energy efficiency.
-                    </div>
-                </div>
-
-            </div>
-            <p class="text-center text-lg mt-8 text-gray-400">
-                <i class="fas fa-chart-line text-neon-green mr-2"></i>Projects: <span id="projects-counter">0</span>+
-            </p>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications" class="py-20">
-            <h2 class="section-title text-4xl font-bold mb-10 text-center">Licenses & Certifications</h2>
-            <div class="max-w-3xl mx-auto certifications-list">
-                <!-- Certifications will be dynamically loaded here by JavaScript -->
-            </div>
-        </section>
-
-
-        <!-- Skills & Tools Section -->
-        <section id="skills" class="py-20">
-            <h2 class="section-title text-4xl font-bold mb-10 text-center">Skills & Tools</h2>
-            <div class="flex justify-center mb-6 flex-wrap gap-3">
-                <button class="filter-skills px-6 py-2 rounded-full bg-gray-700 text-gray-200 hover:bg-neon-green hover:text-midnight-blue transition-colors" data-filter="all">All</button>
-                <button class="filter-skills px-6 py-2 rounded-full bg-gray-700 text-gray-200 hover:bg-neon-green hover:text-midnight-blue transition-colors" data-filter="programming">Programming</button>
-                <button class="filter-skills px-6 py-2 rounded-full bg-gray-700 text-gray-200 hover:bg-neon-green hover:text-midnight-blue transition-colors" data-filter="ml-frameworks">ML Frameworks</button>
-                <button class="filter-skills px-6 py-2 rounded-full bg-gray-700 text-gray-200 hover:bg-neon-green hover:text-midnight-blue transition-colors" data-filter="llm-tools">LLMs & RAG tools</button>
-                <button class="filter-skills px-6 py-2 rounded-full bg-gray-700 text-gray-200 hover:bg-neon-green hover:text-midnight-blue transition-colors" data-filter="ml-concepts">ML & AI Concepts</button>
-                <button class="filter-skills px-6 py-2 rounded-full bg-gray-700 text-gray-200 hover:bg-neon-green hover:text-midnight-blue transition-colors" data-filter="deployment">Deployment</button>
-                <button class="filter-skills px-6 py-2 rounded-full bg-gray-700 text-gray-200 hover:bg-neon-green hover:text-midnight-blue transition-colors" data-filter="tools">Tools</button>
-            </div>
-            <div id="skills-container" class="flex flex-wrap justify-center gap-4">
-                <span class="skill-badge" data-category="programming">Python</span>
-                <span class="skill-badge" data-category="programming">C++</span>
-                <span class="skill-badge" data-category="programming">Java</span>
-                <span class="skill-badge" data-category="programming">SQL</span>
-                <span class="skill-badge" data-category="ml-frameworks">TensorFlow</span>
-                <span class="skill-badge" data-category="ml-frameworks">Keras</span>
-                <span class="skill-badge" data-category="ml-frameworks">PyTorch</span>
-                <span class="skill-badge" data-category="ml-frameworks">Scikit-learn</span>
-                <span class="skill-badge" data-category="ml-frameworks">XGBoost</span>
-                <span class="skill-badge" data-category="ml-frameworks">LightGBM</span>
-                <span class="skill-badge" data-category="llm-tools">LangChain</span>
-                <span class="skill-badge" data-category="llm-tools">FAISS</span>
-                <span class="skill-badge" data-category="llm-tools">Hugging Face</span>
-                <span class="skill-badge" data-category="llm-tools">LLMs (General)</span>
-                <span class="skill-badge" data-category="llm-tools">RAG</span>
-                <span class="skill-badge" data-category="llm-tools">Chatbot Development</span>
-                <span class="skill-badge" data-category="llm-tools">Chromadb</span>
-                <span class="skill-badge" data-category="llm-tools">Unstructured.io</span>
-                <span class="skill-badge" data-category="llm-tools">Docling</span>
-                <span class="skill-badge" data-category="llm-tools">LlamaParse</span>
-                <span class="skill-badge" data-category="llm-tools">pdfplumber</span>
-                <span class="skill-badge" data-category="ml-concepts">Supervised Learning</span>
-                <span class="skill-badge" data-category="ml-concepts">Unsupervised Learning</span>
-                <span class="skill-badge" data-category="ml-concepts">Data Preprocessing</span>
-                <span class="skill-badge" data-category="ml-concepts">Model Training</span>
-                <span class="skill-badge" data-category="ml-concepts">Neural Networks</span>
-                <span class="skill-badge" data-category="ml-concepts">Deep Learning</span>
-                <span class="skill-badge" data-category="ml-concepts">Data Visualization</span>
-                <span class="skill-badge" data-category="ml-concepts">A/B Testing</span>
-                <span class="skill-badge" data-category="ml-concepts">Feature Engineering</span>
-                <span class="skill-badge" data-category="ml-concepts">Convolutional Neural Networks (CNN)</span>
-                <span class="skill-badge" data-category="ml-concepts">Model Tuning</span>
-                <span class="skill-badge" data-category="ml-concepts">Natural Language Processing (NLP)</span>
-                <span class="skill-badge" data-category="ml-concepts">IoT Sensor Networks</span>
-                <span class="skill-badge" data-category="ml-concepts">LSTM Neural Networks</span>
-                <span class="skill-badge" data-category="ml-concepts">Predictive Analytics</span>
-                <span class="skill-badge" data-category="ml-concepts">System Architecture</span>
-                <span class="skill-badge" data-category="ml-concepts">Energy Efficiency</span>
-                <span class="skill-badge" data-category="deployment">Streamlit</span>
-                <span class="skill-badge" data-category="deployment">Gradio</span>
-                <span class="skill-badge" data-category="tools">Power BI</span>
-                <span class="skill-badge" data-category="tools">Tableau</span>
-                <span class="skill-badge" data-category="tools">Excel</span>
-                <span class="skill-badge" data-category="tools">Pandas</span>
-                <span class="skill-badge" data-category="tools">NumPy</span>
-                <span class="skill-badge" data-category="tools">Matplotlib</span>
-                <span class="skill-badge" data-category="tools">Seaborn</span>
-                <span class="skill-badge" data-category="tools">Git</span>
-                <span class="skill-badge" data-category="tools">GitHub</span>
-                <span class="skill-badge" data-category="tools">VS Code</span>
-            </div>
-            <p class="text-center text-lg mt-8 text-gray-400">
-                <i class="fas fa-tools text-neon-green mr-2"></i>Tools Mastered: <span id="tools-counter">0</span>+
-            </p>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 text-center">
-            <h2 class="section-title text-4xl font-bold mb-10">Let’s build smart things together.</h2>
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="https://github.com/muhammadsohail951" target="_blank" class="text-5xl text-gray-300 hover:text-neon-green transition-colors">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://linkedin.com/in/muhammadsohail951" target="_blank" class="text-5xl text-gray-300 hover:text-neon-green transition-colors">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="mailto:sohail.cs951@gmail.com" class="text-5xl text-gray-300 hover:text-neon-green transition-colors">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="https://huggingface.co/muhammadsohail" target="_blank" class="text-5xl text-gray-300 hover:text-neon-green transition-colors">
-                    <i class="fas fa-robot"></i> <!-- Using robot icon for Hugging Face -->
-                </a>
-            </div>
-            <button id="cold-email-bot-btn" class="px-8 py-3 border-2 border-neon-green text-neon-green rounded-full shadow-lg hover:bg-neon-green hover:text-midnight-blue transition duration-300">
-                Generate Cold Email (AI)
-            </button>
-             <div id="cold-email-modal" class="cold-email-modal hidden">
-                <div class="modal-header">
-                    <h3 class="text-xl font-bold">Generate Cold Email</h3>
-                    <button class="close-modal text-gray-400 hover:text-white text-2xl">&times;</button>
-                </div>
-                <div class="modal-body flex flex-col h-full">
-                    <p class="mb-4 text-left">Tell me what kind of email you want to generate (e.g., "Write an email to hire Sohail for an NLP internship", "Email for collaboration on a data science project").</p>
-                    <input type="text" id="cold-email-prompt-input" placeholder="Your email prompt..." class="rounded-full px-4 py-2 text-white mb-4">
-                    <button id="generate-email-btn" class="px-6 py-3 bg-neon-green text-midnight-blue rounded-full hover:bg-teal-600 transition-colors flex items-center justify-center">
-                        Generate Email <div id="email-loading-spinner" class="loading-spinner hidden"></div>
-                    </button>
-                    <div id="generated-email-output" class="match-results mt-5 hidden text-left">
-                        <h4 class="font-semibold text-lg mb-2">Generated Email:</h4>
-                        <textarea id="email-text-output" class="job-description-input" rows="10" readonly></textarea>
-                        <button id="copy-email-btn" class="mt-4 px-4 py-2 bg-gray-700 text-gray-200 rounded-full hover:bg-gray-600 transition-colors">Copy to Clipboard</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="py-10 text-center text-gray-500 text-sm">
-            <p>Copyright © Muhammad Sohail</p>
-            <!-- Removed "Built with ♥ using Gemini & Streamlit-inspired design" -->
-            <!-- Removed "Resume PDF" and "GitHub Pages Repo" links -->
-        </footer>
+  <div class="education-cards">
+    <div class="edu-card reveal">
+      <div class="edu-date">2024 — 2025</div>
+      <div class="edu-degree">M.Sc. Data Science & Network Intelligence</div>
+      <div class="edu-institution">Télécom SudParis — Institut Polytechnique de Paris</div>
+      <div class="edu-location">Évry-Courcouronnes, France</div>
+      <div class="edu-details">
+        Advanced coursework in Machine Learning, Deep Learning, NLP, Data Mining, and Network Science. Master's thesis on Generative AI chatbot development using RAG and LLMs for university administration, evaluated positively by jury.
+      </div>
     </div>
 
-    <script type="module">
-        // Firebase Imports - MUST be at the top level of the module script
-        // These imports will be processed as ES Modules.
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        // import { getFirestore, collection, addDoc, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js"; // Uncomment if Firestore is used
-
-
-        // Resume Data for Chatbot and Matcher
-        const resumeData = {
-            name: "Muhammad Sohail",
-            email: "sohail.cs951@gmail.com",
-            phone: "(33) 781588798",
-            linkedin: "muhammadsohail951",
-            location: "Evry France",
-            experience: [
-                {
-                    title: "Data Science Intern",
-                    company: "Université Paris-Saclay",
-                    duration: "Mar 2025 - Present",
-                    description: "Developing an intelligent HR chatbot using LLMs and Retrieval-Augmented Generation (RAG) to automate staff inquiries on recruitment, leave, and training. Implementing robust validation mechanisms to ensure accurate and policy-compliant responses. Designing a user-friendly interface using Streamlit and Gradio, deployed within the university's internal data center. Leveraging tools like Unstructured.io, Docling, LlamaParse, pdfplumber, and LangChain for document parsing and knowledge extraction. Using open-source models such as LLaMA, Mistral, and others for generating contextual answers via API integration.",
-                    keywords: ["LLMs", "RAG", "Streamlit", "Gradio", "LangChain", "LLaMA", "Mistral", "Unstructured.io", "Docling", "LlamaParse", "pdfplumber"]
-                },
-                {
-                    title: "Data Analyst Intern (Remote)",
-                    company: "Code Clause Pvt Ltd.",
-                    duration: "Oct 2023 - Apr 2024",
-                    description: "Led data preparation tasks, including handling missing values and standardizing data for accurate analysis. Applied advanced statistical techniques (e.g., linear regression, hypothesis testing) to uncover insights and support decision-making. Delivered actionable insights via dashboards and reports, enhancing stakeholder understanding and driving strategic decisions.",
-                    keywords: ["Data Preparation", "Statistical Analysis", "Linear Regression", "Hypothesis Testing", "Dashboards", "Reports"]
-                }
-            ],
-            education: [
-                {
-                    degree: "MSc M2 in Data Science and Network Intelligence",
-                    institution: "Institut Polytechnique de Paris, France",
-                    duration: "Sep 2024 - Current",
-                    gpa: "15.81",
-                    coursework: "Data Science, Data Visualization, Deep Learning, Blockchain, Network Intelligence, Internet of Things (IoT), Distributed Networking, Business Modelling"
-                },
-                {
-                    degree: "Bachelor of Computer Science",
-                    institution: "University of Malakand, Pakistan",
-                    duration: "Aug 2019 - Sep 2023",
-                    gpa: "3.75",
-                    coursework: "Programming Languages, Web Development, Database Management, Operating Systems, Networking, Software Engineering, AI, Mathematics, and Statistics"
-                }
-            ],
-            projects: [
-                {
-                    name: "HR Chatbot",
-                    description: "Intelligent HR chatbot for automating staff inquiries using LLMs and RAG.",
-                    tools: ["LangChain", "LLaMA", "Gradio", "RAG", "Unstructured.io", "Docling", "LlamaParse", "pdfplumber"],
-                    github_link: "#", // Placeholder
-                    summary: "This project involved the development of an HR chatbot capable of automating staff inquiries related to recruitment, leave, and training. It leverages advanced LLMs and Retrieval-Augmented Generation (RAG) to ensure contextual and accurate responses. Robust validation mechanisms were implemented for policy compliance. Tools used include Unstructured.io, Docling, LlamaParse, and pdfplumber for document parsing and knowledge extraction."
-                },
-                {
-                    name: "MediBot",
-                    description: "AI-powered medical chatbot for retrieving trusted medical information.",
-                    tools: ["Python", "LangChain", "FAISS", "Hugging Face", "Mistral-7B", "Streamlit", "Hugging Face Spaces"],
-                    github_link: "#", // Placeholder
-                    summary: "Built an AI-powered medical chatbot that retrieves trusted medical information using a context-based retrieval system. Tools Used: Python, LangChain, FAISS, Hugging Face, Mistral-7B, Streamlit, Hugging Face Spaces."
-                },
-                {
-                    name: "Emotion Detection",
-                    description: "System to detect perceived emotions in text using deep learning.",
-                    tools: ["TensorFlow", "Keras", "PyTorch", "NLTK", "SpaCy", "Transformers", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Streamlit"],
-                    github_link: "#", // Placeholder
-                    summary: "Developed a system to detect perceived emotions in text using deep learning algorithms, enabling multi-label emotion classification and intensity estimation. This task focuses on detecting perceived emotions in text, including predicting emotions (joy, sadness, fear, anger, surprise, disgust), estimating emotion intensity, and cross-lingual emotion detection. The dataset covers a variety of languages, highlighting the complexity of interpreting emotions across cultures. Skills: Deep Learning · TensorFlow · Keras · PyTorch · Natural Language Processing: NLTK, SpaCy, Transformers · Data Processing: Pandas, NumPy · Visualization: Matplotlib, Seaborn · Deployment: Streamlit."
-                },
-                {
-                    name: "Parkinson's Disease Progression Prediction",
-                    description: "Machine learning system for Parkinson's disease progression prediction.",
-                    tools: ["Python", "Pandas", "Scikit-learn", "XGBoost", "LightGBM", "Streamlit"],
-                    github_link: "#", // Placeholder
-                    summary: "This machine learning system identifies subtypes of Parkinson's disease and predicts disease progression using clinical and genetic data. Tools like Python, Pandas, Scikit-learn, XGBoost, LightGBM, and Streamlit were used to develop and present the predictive models."
-                },
-                {
-                    name: "Basic Image Classification with Tensorflow",
-                    description: "A simple image classifier using TensorFlow and CNNs.",
-                    tools: ["TensorFlow", "Keras", "Convolutional Neural Networks (CNN)", "Python", "Pandas", "NumPy", "Model Tuning"],
-                    github_link: "https://github.com/CallSohail/Basic-Image-Classification-With-Tensorflow",
-                    summary: "I built a simple image classifier using TensorFlow. The model distinguishes between image categories using a convolutional neural network (CNN). I preprocessed the image data—resizing, normalizing, and even augmenting to boost performance. The CNN, built with TensorFlow’s Keras API, learned to identify key features in images. Techniques like dropout and pooling were used to improve accuracy and reduce overfitting. This project sharpened my skills in deep learning and model evaluation, provided hands-on experience in tuning hyperparameters and troubleshooting model performance, and was a great step in my journey into AI."
-                },
-                {
-                    name: "Dynamic Cooling System in Data Centers Using IoT & LSTM",
-                    description: "IoT-powered dynamic cooling system for data centers.",
-                    tools: ["IoT Sensor Networks", "LSTM Neural Networks", "Predictive Analytics", "System Architecture", "Energy Efficiency", "Python"],
-                    github_link: "https://drive.google.com/file/d/19cPWUFmizD4H7woCS7pQ2Xb_430EDupi/view?usp=sharing&usp=embed_facebook",
-                    summary: "Developed a dynamic cooling system for data centers that combines air and liquid cooling. The system adjusts in real time based on sensor data. IoT sensors collect temperature, humidity, and energy data, and an LSTM neural network processes this information to predict cooling needs. Benefits include optimizing energy consumption, reducing carbon footprint, and enhancing system reliability and equipment lifespan. This project features a robust, multi-tier architecture with data collection, edge processing, central decision-making, and actuator control. Completed as part of my Master’s program at Telecom SudParis, it showcases my ability to integrate predictive analytics and smart systems to drive energy efficiency."
-                }
-            ],
-            skills: {
-                "Programming": ["Python", "C++", "Java", "SQL (MySQL, PostgreSQL)"],
-                "ML Frameworks": ["TensorFlow", "Keras", "PyTorch", "Scikit-learn", "XGBoost", "LightGBM"],
-                "LLMs & RAG tools": ["LangChain", "FAISS", "Hugging Face", "LLMs", "Retrieval-Augmented Generation (RAG)", "Chatbot Development", "Chromadb", "Unstructured.io", "Docling", "LlamaParse", "pdfplumber", "NLTK", "SpaCy", "Transformers"],
-                "Machine Learning & AI Concepts": [
-                    "Supervised/Unsupervised Learning",
-                    "Data Preprocessing",
-                    "Model Training",
-                    "Neural Networks",
-                    "Deep Learning",
-                    "Data Visualization",
-                    "A/B Testing",
-                    "Feature Engineering",
-                    "Convolutional Neural Networks (CNN)",
-                    "Model Tuning",
-                    "Natural Language Processing (NLP)",
-                    "IoT Sensor Networks",
-                    "LSTM Neural Networks",
-                    "Predictive Analytics",
-                    "System Architecture",
-                    "Energy Efficiency"
-                ],
-                "Deployment": ["Streamlit", "Gradio"],
-                "Tools": ["Power BI", "Tableau", "Excel", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Git", "GitHub", "VS Code"]
-            },
-            languages: {
-                "English": "Fluent",
-                "Pashto": "Native/Bilingual",
-                "Urdu": "Native/Bilingual",
-                "French": "Basic"
-            },
-            certifications: [
-                {
-                    title: "Python (Basic) Certificate",
-                    issuer: "HackerRank",
-                    issued_date: "Mar 2023",
-                    credential_link: "https://www.hackerrank.com/certificates/a3447be213bd",
-                    skills: ["Python (Programming Language)"]
-                },
-                {
-                    title: "Introduction to Deep Learning & Neural Networks with Keras",
-                    issuer: "Coursera",
-                    issued_date: "Sep 2022",
-                    credential_link: "https://coursera.org/share/c998d49d5e64e32df7f1974cda8d9397",
-                    skills: []
-                },
-                {
-                    title: "Basic Image Classification with Tensorflow",
-                    issuer: "Coursera",
-                    issued_date: "Jun 2022",
-                    credential_link: "https://coursera.org/share/414d8fb6fb50c392725ef00c2061fc99",
-                    skills: ["Scikit-Learn", "Data Science"]
-                },
-                {
-                    title: "Create a Profile and Network on LinkedIn",
-                    issuer: "Coursera",
-                    issued_date: "Jun 2022",
-                    credential_link: "https://coursera.org/share/a901b5e0e309932e99133a861b4f22b4",
-                    skills: []
-                },
-                {
-                    title: "Deep Learning with PyTorch : Image Segmentation",
-                    issuer: "Coursera",
-                    issued_date: "Jun 2022",
-                    credential_link: "https://coursera.org/share/288d38048b91c568676c6df17817d2e6",
-                    skills: ["Scikit-Learn", "Data Science"]
-                },
-                {
-                    title: "Machine Learning With Python",
-                    issuer: "Coursera",
-                    issued_date: "Jun 2022",
-                    credential_link: "https://coursera.org/share/51781f6e8a1acc10b4d55c96eba6c840",
-                    skills: ["Scikit-Learn", "Natural Language Processing (NLP)"]
-                },
-                {
-                    title: "Statement of Accomplishment",
-                    issuer: "DataCamp",
-                    issued_date: "Oct 2021",
-                    credential_link: "https://www.datacamp.com/statement-of-accomplishment/course/7c0492242036abd0d589d9ff8119596960d41692",
-                    skills: ["Scikit-Learn", "Natural Language Processing (NLP)"]
-                },
-                {
-                    title: "Certificate of partcipation",
-                    issuer: "CyberVision International",
-                    issued_date: "Aug 2021",
-                    credential_link: null,
-                    skills: []
-                }
-            ]
-        };
-
-        // --- Global Variables for Firebase/Gemini API (Canvas Environment) ---
-        // These are provided by the Canvas environment. If they are not defined,
-        // fallback to default values (e.g., for local development).
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-        const apiKey = "AIzaSyCmmzkcYRIz-VO2-27Jhd3AxO1Vzob5Yjk"; // API Key provided by the user
-
-        // Initialize Firebase (if Firebase config is available)
-        let app, db, auth;
-        let userId = 'anonymous'; // Default to anonymous
-
-        // Only initialize Firebase if a config is provided.
-        // This makes the app runnable even outside the Canvas environment for basic UI.
-        if (Object.keys(firebaseConfig).length > 0) {
-            app = initializeApp(firebaseConfig);
-            auth = getAuth(app);
-            // db = getFirestore(app); // Uncomment if Firestore is used
-
-            // Authenticate user
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    userId = user.uid;
-                    console.log("Authenticated user ID:", userId);
-                } else {
-                    try {
-                        if (initialAuthToken) {
-                            await signInWithCustomToken(auth, initialAuthToken);
-                        } else {
-                            await signInAnonymously(auth);
-                        }
-                        userId = auth.currentUser?.uid || crypto.randomUUID(); // Fallback if auth.currentUser is null
-                        console.log("Signed in with user ID:", userId);
-                    } catch (error) {
-                        console.error("Firebase authentication error:", error);
-                        // Fallback to a random UUID if auth fails
-                        userId = crypto.randomUUID();
-                        console.log("Continuing with anonymous user ID:", userId);
-                    }
-                }
-            });
-        } else {
-            console.warn("Firebase config not found. AI features relying on Firebase/Gemini API might not function.");
-            userId = crypto.randomUUID(); // Generate a random ID for local testing without Firebase
-        }
-
-
-        // --- Particle Background Animation ---
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        const numParticles = 100;
-        const connectionDistance = 150; // Max distance for lines between particles
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        class Particle {
-            constructor(x, y) {
-                this.x = x || Math.random() * canvas.width;
-                this.y = y || Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5; // Slower movement
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 1.5 + 0.5; // Smaller particles
-                this.color = 'rgba(56, 178, 172, 0.8)'; // Neon green/teal
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Bounce off edges
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < numParticles; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                // Draw lines between nearby particles
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < connectionDistance) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(56, 178, 172, ${1 - (distance / connectionDistance)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animateParticles);
-        }
-
-        window.addEventListener('load', () => {
-            resizeCanvas();
-            initParticles();
-            animateParticles();
-            generateDynamicTagline(); // Call dynamic tagline generation on load
-        });
-        window.addEventListener('resize', resizeCanvas);
-
-
-        // --- Theme Toggle ---
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const body = document.body;
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            body.classList.toggle('light-mode');
-            if (body.classList.contains('light-mode')) {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-                // Adjust particle color for light mode if desired
-                particles.forEach(p => p.color = 'rgba(49, 130, 206, 0.8)'); // Blue for light mode
-            } else {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-                particles.forEach(p => p.color = 'rgba(56, 178, 172, 0.8)'); // Neon green for dark mode
-            }
-        });
-
-
-        // --- Smooth Scrolling ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-
-        // --- Animated Subtitle ---
-        const subtitleSpans = document.querySelectorAll('#animated-subtitle span');
-        subtitleSpans.forEach((span, index) => {
-            span.style.animationDelay = `${index * 0.15}s`;
-        });
-
-
-        // --- Project Card Expandable Summary ---
-        document.querySelectorAll('.expand-project').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const projectId = e.target.dataset.project;
-                const summaryDiv = document.getElementById(`${projectId}-summary`);
-                if (summaryDiv) {
-                    summaryDiv.classList.toggle('hidden');
-                    e.target.textContent = summaryDiv.classList.contains('hidden') ? 'Read More' : 'Show Less';
-                }
-            });
-        });
-
-
-        // --- Skill Filter ---
-        const filterButtons = document.querySelectorAll('.filter-skills');
-        const skillBadges = document.querySelectorAll('.skill-badge');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const filter = e.target.dataset.filter;
-                skillBadges.forEach(badge => {
-                    const category = badge.dataset.category;
-                    if (filter === 'all' || category === filter) {
-                        badge.style.display = 'inline-block';
-                        badge.style.animation = 'fadeInScale 0.5s forwards'; // Re-animate
-                        badge.style.opacity = 0; // Reset opacity for animation
-                    } else {
-                        badge.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // --- Interactive Stats Counters ---
-        const projectsCounter = document.getElementById('projects-counter');
-        const toolsCounter = document.getElementById('tools-counter');
-
-        function animateCounter(element, target, duration) {
-            let start = 0;
-            const increment = target / (duration / 16); // 16ms per frame
-            const step = () => {
-                start += increment;
-                if (start < target) {
-                    element.textContent = Math.floor(start);
-                    requestAnimationFrame(step);
-                } else {
-                    element.textContent = target;
-                }
-            };
-            requestAnimationFrame(step);
-        }
-
-        // Trigger counters when section is in view
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.5 // Trigger when 50% of the section is visible
-        };
-
-        const projectsSection = document.getElementById('projects');
-        const skillsSection = document.getElementById('skills');
-
-        const sectionObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (entry.target.id === 'projects') {
-                        animateCounter(projectsCounter, resumeData.projects.length, 1000);
-                        observer.unobserve(entry.target); // Stop observing once animated
-                    } else if (entry.target.id === 'skills') {
-                        let totalTools = 0;
-                        for (const category in resumeData.skills) {
-                            totalTools += resumeData.skills[category].length;
-                        }
-                        animateCounter(toolsCounter, totalTools, 1500);
-                        observer.unobserve(entry.target); // Stop observing once animated
-                    }
-                }
-            });
-        }, observerOptions);
-
-        sectionObserver.observe(projectsSection);
-        sectionObserver.observe(skillsSection);
-
-
-        // --- Chatbot Functionality ---
-        const chatbotFloatBtn = document.getElementById('chatbot-float-btn');
-        const heroChatbotBtn = document.getElementById('hero-chatbot-btn');
-        const chatbotModal = document.getElementById('chatbot-modal');
-        const closeModals = document.querySelectorAll('.close-modal'); // Select all close buttons
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-        const sendChatBtn = document.getElementById('send-chat-btn');
-        const chatLoadingSpinner = document.getElementById('chat-loading-spinner');
-
-        function openModal(modal) {
-            modal.style.display = 'flex';
-            modal.classList.add('active'); // Add active class for transition
-        }
-
-        function closeModalsFunc() {
-            document.querySelectorAll('.chatbot-modal, .resume-matcher-modal, .cold-email-modal, .easter-egg-modal').forEach(modal => {
-                modal.classList.remove('active'); // Remove active class for transition
-                // Give some time for the transition to complete before hiding
-                setTimeout(() => { modal.style.display = 'none'; }, 300);
-            });
-        }
-
-        chatbotFloatBtn.addEventListener('click', () => openModal(chatbotModal));
-        heroChatbotBtn.addEventListener('click', () => openModal(chatbotModal));
-
-        closeModals.forEach(button => {
-            button.addEventListener('click', closeModalsFunc);
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (event) => {
-            if (event.target.classList.contains('chatbot-modal') || event.target.classList.contains('resume-matcher-modal') || event.target.classList.contains('cold-email-modal') || event.target.classList.contains('easter-egg-modal')) {
-                closeModalsFunc();
-            }
-        });
-
-        function addMessage(message, sender) {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('chat-message', sender === 'user' ? 'user' : 'ai');
-            msgDiv.textContent = message;
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to bottom
-        }
-
-        async function sendChatMessage() {
-            const userMessage = chatInput.value.trim();
-            if (!userMessage) return;
-
-            addMessage(userMessage, 'user');
-            chatInput.value = '';
-            chatLoadingSpinner.classList.remove('hidden');
-            sendChatBtn.disabled = true;
-
-            try {
-                // Construct a detailed prompt for the LLM based on user query and resume data
-                const fullPrompt = `You are an AI assistant for Muhammad Sohail's portfolio. Your goal is to answer questions about him and his resume accurately and concisely. Use the provided resume data. If you don't know the answer based on the resume, politely say so.
-
-                Muhammad Sohail's Resume Data:
-                Name: ${resumeData.name}
-                Email: ${resumeData.email}
-                Phone: ${resumeData.phone}
-                LinkedIn: https://linkedin.com/in/${resumeData.linkedin}
-                Location: ${resumeData.location}
-
-                Experience:
-                ${resumeData.experience.map(exp => `- ${exp.title} at ${exp.company} (${exp.duration}): ${exp.description}`).join('\n')}
-
-                Education:
-                ${resumeData.education.map(edu => `- ${edu.degree} from ${edu.institution} (${edu.duration})${edu.gpa ? `, GPA: ${edu.gpa}` : ''}${edu.coursework ? `, Coursework: ${edu.coursework}` : ''}`).join('\n')}
-
-                Projects:
-                ${resumeData.projects.map(proj => `- ${proj.name}: ${proj.description} (Tools: ${proj.tools.join(', ')})`).join('\n')}
-
-                Skills:
-                ${Object.entries(resumeData.skills).map(([category, skillList]) => `${category}: ${skillList.join(', ')}`).join('\n')}
-
-                Languages (Spoken):
-                ${Object.entries(resumeData.languages).map(([lang, proficiency]) => `- ${lang} (${proficiency})`).join('\n')}
-
-                Certifications:
-                ${resumeData.certifications.map(cert => `- ${cert.title} from ${cert.issuer} (Issued: ${cert.issued_date})${cert.skills.length > 0 ? `, Skills: ${cert.skills.join(', ')}` : ''}${cert.credential_link ? `, Credential: ${cert.credential_link}` : ''}`).join('\n')}
-
-                User's question: "${userMessage}"
-
-                Provide a direct and helpful answer based on the above information.`;
-
-                const chatHistory = [{ role: "user", parts: [{ text: fullPrompt }] }];
-                const payload = { contents: chatHistory };
-                // Using the provided API key here
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const aiResponse = result.candidates[0].content.parts[0].text;
-                    addMessage(aiResponse, 'ai');
-                } else {
-                    addMessage("I apologize, I couldn't process your request at this moment. Please try again.", 'ai');
-                    console.error("Gemini API response structure unexpected:", result);
-                }
-            } catch (error) {
-                console.error("Error communicating with Gemini API:", error);
-                addMessage("I'm sorry, I'm having trouble connecting right now. Please try again later.", 'ai');
-            } finally {
-                chatLoadingSpinner.classList.add('hidden');
-                sendChatBtn.disabled = false;
-            }
-        }
-
-        sendChatBtn.addEventListener('click', sendChatMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendChatMessage();
-            }
-        });
-
-
-        // --- Resume Matcher Functionality ---
-        const resumeMatcherFloatBtn = document.getElementById('resume-matcher-float-btn');
-        const resumeMatcherModal = document.getElementById('resume-matcher-modal');
-        const jobDescriptionInput = document.getElementById('job-description-input');
-        const analyzeJdBtn = document.getElementById('analyze-jd-btn');
-        const matchResultsDiv = document.getElementById('match-results');
-        const matchScoreSpan = document.getElementById('match-score');
-        const matchedKeywordsSpan = document.getElementById('matched-keywords');
-        const fitSummarySpan = document.getElementById('fit-summary');
-        const jdLoadingSpinner = document.getElementById('jd-loading-spinner');
-
-        resumeMatcherFloatBtn.addEventListener('click', () => openModal(resumeMatcherModal));
-
-        // Show Resume Matcher button on scroll (e.g., when reaching a certain section)
-        window.addEventListener('scroll', () => {
-            const aboutSection = document.getElementById('about');
-            const rect = aboutSection.getBoundingClientRect();
-            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-                resumeMatcherFloatBtn.classList.remove('hidden');
-            } else {
-                resumeMatcherFloatBtn.classList.add('hidden');
-            }
-        });
-
-
-        async function analyzeJobDescription() {
-            const jobDescription = jobDescriptionInput.value.trim();
-            if (!jobDescription) {
-                console.error("Please paste a job description to analyze.");
-                return;
-            }
-
-            jdLoadingSpinner.classList.remove('hidden');
-            analyzeJdBtn.disabled = true;
-            matchResultsDiv.classList.add('hidden'); // Hide previous results
-
-            try {
-                const structuredPrompt = {
-                    contents: [
-                        {
-                            role: "user",
-                            parts: [
-                                {
-                                    text: `Analyze the following job description against Muhammad Sohail's resume.
-                                    Provide a percentage match score, a list of top 5-10 matching keywords (comma-separated), and a concise summary (2-3 sentences) on why Muhammad's profile is a good fit.
-
-                                    Muhammad Sohail's Resume (Summary):
-                                    - Name: ${resumeData.name}
-                                    - Email: ${resumeData.email}
-                                    - Phone: ${resumeData.phone}
-                                    - LinkedIn: https://linkedin.com/in/${resumeData.linkedin}
-                                    - Location: ${resumeData.location}
-                                    - Experience: ${resumeData.experience.map(exp => `${exp.title} at ${exp.company} (${exp.duration}), focused on ${exp.description}`).join('; ')}.
-                                    - Education: ${resumeData.education.map(edu => `${edu.degree} from ${edu.institution} (${edu.duration})${edu.gpa ? `, GPA: ${edu.gpa}` : ''}${edu.coursework ? `, Coursework: ${edu.coursework}` : ''}`).join('; ')}.
-                                    - Projects: ${resumeData.projects.map(proj => `${proj.name} (Tools: ${proj.tools.join(', ')}) - ${proj.summary}`).join('; ')}.
-                                    - Skills (Programming): ${resumeData.skills["Programming"].join(', ')}.
-                                    - Skills (ML Frameworks): ${resumeData.skills["ML Frameworks"].join(', ')}.
-                                    - Skills (LLMs & RAG tools): ${resumeData.skills["LLMs & RAG tools"].join(', ')}.
-                                    - Skills (Machine Learning & AI Concepts): ${resumeData.skills["Machine Learning & AI Concepts"].join(', ')}.
-                                    - Skills (Deployment): ${resumeData.skills["Deployment"].join(', ')}.
-                                    - Skills (Tools): ${resumeData.skills["Tools"].join(', ')}.
-                                    - Languages (Spoken): ${Object.entries(resumeData.languages).map(([lang, proficiency]) => `${lang} (${proficiency})`).join(', ')}.
-                                    - Certifications: ${resumeData.certifications.map(cert => `${cert.title} from ${cert.issuer} (Issued: ${cert.issued_date})${cert.skills.length > 0 ? `, Skills: ${cert.skills.join(', ')}` : ''}`).join('; ')}.
-
-
-                                    Job Description:
-                                    "${jobDescription}"
-
-                                    Provide the output as a JSON object with keys: "matchScore" (integer), "matchedKeywords" (string, comma-separated), "fitSummary" (string).`
-                                }
-                            ]
-                        }
-                    ],
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "OBJECT",
-                            properties: {
-                                "matchScore": { "type": "NUMBER" },
-                                "matchedKeywords": { "type": "STRING" },
-                                "fitSummary": { "type": "STRING" }
-                            },
-                            required: ["matchScore", "matchedKeywords", "fitSummary"]
-                        }
-                    }
-                };
-
-                // Using the provided API key here
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(structuredPrompt)
-                });
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const jsonString = result.candidates[0].content.parts[0].text;
-                    const parsedJson = JSON.parse(jsonString);
-
-                    matchScoreSpan.textContent = parsedJson.matchScore;
-                    matchedKeywordsSpan.textContent = parsedJson.matchedKeywords;
-                    fitSummarySpan.textContent = parsedJson.fitSummary;
-                    matchResultsDiv.classList.remove('hidden');
-                } else {
-                    console.error("Could not analyze job description. Gemini API response structure unexpected:", result);
-                    matchResultsDiv.classList.remove('hidden');
-                    matchResultsDiv.innerHTML = '<p class="text-red-400">Error: Could not analyze the job description. Please try again.</p>';
-                }
-            } catch (error) {
-                console.error("Error analyzing job description with Gemini API:", error);
-                matchResultsDiv.classList.remove('hidden');
-                matchResultsDiv.innerHTML = '<p class="text-red-400">An error occurred while analyzing the job description. Please try again later.</p>';
-            } finally {
-                jdLoadingSpinner.classList.add('hidden');
-                analyzeJdBtn.disabled = false;
-            }
-        }
-
-        analyzeJdBtn.addEventListener('click', analyzeJobDescription);
-
-
-        // --- Cold Email Generation ---
-        const coldEmailBotBtn = document.getElementById('cold-email-bot-btn');
-        const coldEmailModal = document.getElementById('cold-email-modal');
-        const coldEmailPromptInput = document.getElementById('cold-email-prompt-input');
-        const generateEmailBtn = document.getElementById('generate-email-btn');
-        const generatedEmailOutput = document.getElementById('generated-email-output');
-        const emailTextOutput = document.getElementById('email-text-output');
-        const copyEmailBtn = document.getElementById('copy-email-btn');
-        const emailLoadingSpinner = document.getElementById('email-loading-spinner');
-
-        coldEmailBotBtn.addEventListener('click', () => openModal(coldEmailModal));
-
-        async function generateColdEmail() {
-            const prompt = coldEmailPromptInput.value.trim();
-            if (!prompt) {
-                console.error("Please enter a prompt for the email generation.");
-                return;
-            }
-
-            emailLoadingSpinner.classList.remove('hidden');
-            generateEmailBtn.disabled = true;
-            generatedEmailOutput.classList.add('hidden');
-
-            try {
-                const fullPrompt = `Generate a professional cold email based on the following request, as if you are someone writing an email to Muhammad Sohail or about hiring him.
-                Muhammad Sohail's contact: sohail.cs951@gmail.com, (33) 781588798. LinkedIn: https://linkedin.com/in/${resumeData.linkedin}.
-                He is a Data Science Intern, ML Developer, LLM Enthusiast.
-                His current education is MSc M2 in Data Science and Network Intelligence at Institut Polytechnique de Paris, with coursework in ${resumeData.education[0].coursework}.
-                His experience includes Data Science Intern at Université Paris-Saclay (HR chatbot with LLMs/RAG) and Data Analyst Intern at Code Clause.
-                His key skills include: ${Object.values(resumeData.skills).flat().join(', ')}.
-                His projects include: ${resumeData.projects.map(p => p.name).join(', ')}.
-                Spoken Languages: ${Object.entries(resumeData.languages).map(([lang, proficiency]) => `${lang} (${proficiency})`).join(', ')}.
-                Certifications: ${resumeData.certifications.map(cert => `${cert.title} from ${cert.issuer} (Issued: ${cert.issued_date})${cert.skills.length > 0 ? `, Skills: ${cert.skills.join(', ')}` : ''}`).join('; ')}.
-
-                Prompt: "${prompt}"
-
-                The email should be well-structured, polite, and persuasive, and suitable for a professional context. Do not include a subject line. Just the body of the email.`;
-
-                const chatHistory = [{ role: "user", parts: [{ text: fullPrompt }] }];
-                const payload = { contents: chatHistory };
-                // Using the provided API key here
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const emailBody = result.candidates[0].content.parts[0].text;
-                    emailTextOutput.value = emailBody;
-                    generatedEmailOutput.classList.remove('hidden');
-                } else {
-                    console.error("Could not generate email. Gemini API response structure unexpected:", result);
-                    generatedEmailOutput.classList.remove('hidden');
-                    generatedEmailOutput.innerHTML = '<p class="text-red-400">Error: Could not generate the email. Please try again.</p>';
-                }
-            } catch (error) {
-                console.error("Error generating cold email with Gemini API:", error);
-                generatedEmailOutput.classList.remove('hidden');
-                generatedEmailOutput.innerHTML = '<p class="text-red-400">An error occurred while generating the email. Please try again later.</p>';
-            } finally {
-                emailLoadingSpinner.classList.add('hidden');
-                generateEmailBtn.disabled = false;
-            }
-        }
-
-        generateEmailBtn.addEventListener('click', generateColdEmail);
-
-        copyEmailBtn.addEventListener('click', () => {
-            emailTextOutput.select();
-            document.execCommand('copy'); // Fallback for clipboard API in iframes
-            console.log('Email copied to clipboard!');
-            const originalText = copyEmailBtn.textContent;
-            copyEmailBtn.textContent = 'Copied!';
-            setTimeout(() => { copyEmailBtn.textContent = originalText; }, 2000);
-        });
-
-
-        // --- Easter Egg ---
-        const llmEnthusiastSpan = document.querySelector('#animated-subtitle span:last-child');
-        const easterEggModal = document.getElementById('easter-egg-modal');
-
-        llmEnthusiastSpan.addEventListener('click', () => {
-            if (llmEnthusiastSpan.textContent.includes('LLM Enthusiast')) {
-                openModal(easterEggModal);
-            }
-        });
-
-        // --- Dynamic Tagline Generation ---
-        const dynamicTaglineElement = document.getElementById('dynamic-tagline');
-        async function generateDynamicTagline() {
-            try {
-                // Modified prompt to explicitly ask for one tagline without markdown
-                const prompt = `Generate a very concise (under 15 words) and impactful tagline for a Data Science Intern, ML Developer, and LLM Enthusiast. The tagline should subtly hint at AI, Data Science, and Retrieval-Augmented Generation (RAG). Make it sound intelligent and modern. Do NOT use any markdown formatting like asterisks (**). Provide only the tagline text.`;
-
-                const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-                const payload = { contents: chatHistory };
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    // Ensure any residual markdown is stripped, though the prompt should prevent it
-                    let generatedText = result.candidates[0].content.parts[0].text;
-                    generatedText = generatedText.replace(/\*\*/g, '').trim(); // Remove any double asterisks
-                    dynamicTaglineElement.textContent = generatedText;
-                } else {
-                    dynamicTaglineElement.textContent = "Innovating with AI, one insight at a time.";
-                    console.error("Gemini API response for tagline unexpected:", result);
-                }
-            } catch (error) {
-                dynamicTaglineElement.textContent = "Transforming data into intelligent action.";
-                console.error("Error generating dynamic tagline:", error);
-            }
-        }
-
-        // --- Dynamic Certification Loading ---
-        function loadCertifications() {
-            const certificationsContainer = document.querySelector('#certifications .max-w-3xl.mx-auto'); // Target the div within certifications section
-            certificationsContainer.innerHTML = ''; // Clear existing content
-
-            resumeData.certifications.forEach(cert => {
-                const certItem = document.createElement('div');
-                certItem.classList.add('certifications-list-item'); // Apply new list item style
-
-                let skillsHtml = '';
-                if (cert.skills && cert.skills.length > 0) {
-                    skillsHtml = `
-                        <div class="cert-skills flex flex-wrap gap-2 mt-2">
-                            ${cert.skills.map(skill => `<span class="skill-badge">${skill}</span>`).join('')}
-                        </div>
-                    `;
-                }
-
-                let credentialLinkHtml = '';
-                if (cert.credential_link) {
-                    credentialLinkHtml = `<a href="${cert.credential_link}" target="_blank" class="cert-link flex items-center mt-2">Show Credential <i class="fas fa-external-link-alt ml-1"></i></a>`;
-                }
-
-                certItem.innerHTML = `
-                    <div class="cert-icon"><i class="fas fa-award"></i></div> <!-- Added a generic award icon -->
-                    <div class="cert-details">
-                        <p class="cert-title">${cert.title}</p>
-                        <p class="cert-issuer-date">${cert.issuer} | Issued: ${cert.issued_date}</p>
-                        ${skillsHtml}
-                        ${credentialLinkHtml}
-                    </div>
-                `;
-                certificationsContainer.appendChild(certItem);
-            });
-        }
-
-        // Call loadCertifications when the page loads
-        window.addEventListener('load', loadCertifications);
-
-    </script>
+    <div class="edu-card reveal">
+      <div class="edu-date">2018 — 2022</div>
+      <div class="edu-degree">B.Sc. Information Technology</div>
+      <div class="edu-institution">University of Malakand</div>
+      <div class="edu-location">Khyber Pakhtunkhwa, Pakistan</div>
+      <div class="edu-details">
+        CGPA: 3.37/4.00. Senior Design Project (Grade A+): Arduino-based self-driving car integrating computer vision and ML for obstacle detection and lane tracking. Relevant coursework: Data Structures & Algorithms, Database Administration (A+), OOP, Software Engineering. Workshops in Software Engineering (2021) and Cyber Security (2022).
+      </div>
+    </div>
+
+    <div class="edu-card reveal">
+      <div class="edu-date">2016 — 2018</div>
+      <div class="edu-degree">Intermediate (FSc Pre-Engineering)</div>
+      <div class="edu-institution">Govt. PG Jahanzeb College</div>
+      <div class="edu-location">Saidu Sharif, Swat, Pakistan</div>
+      <div class="edu-details">
+        Pre-engineering track with a focus on Mathematics and Physics. Built the foundation for a technical career in computing and engineering.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROJECTS ═══════════════════ -->
+<section id="projects">
+  <div class="section-label reveal">Projects</div>
+  <h2 class="section-title reveal">What I've Built</h2>
+  <p class="section-subtitle reveal">Production systems with real users — not weekend demos.</p>
+
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-icon">🤖</div>
+      <div class="project-title">University RAG Chatbot Platform</div>
+      <div class="project-desc">
+        Architected and deployed production RAG chatbots serving 500+ university staff for HR and IT support queries. Built multimodal document processing pipelines using vision-language models, improving content extraction from complex PDFs from 60% to 95%. Implemented hybrid search combining semantic embeddings with BM25 lexical search, increasing retrieval precision by 35%.
+      </div>
+      <div class="project-tech">
+        <span>Python</span><span>RAG</span><span>LangChain</span><span>RAGFlow</span><span>FAISS</span><span>ChromaDB</span><span>vLLM</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">⚡</div>
+      <div class="project-title">GPU-Optimized LLM Serving Infrastructure</div>
+      <div class="project-desc">
+        Engineered high-performance model serving infrastructure on dual NVIDIA L40S GPUs using vLLM. Configured tensor parallelism, continuous batching, and memory optimization for serving multiple LLMs simultaneously including gpt-oss-20b and vision models. Built comprehensive GPU monitoring dashboards with real-time metrics.
+      </div>
+      <div class="project-tech">
+        <span>vLLM</span><span>NVIDIA L40S</span><span>Docker</span><span>CUDA</span><span>FastAPI</span><span>Monitoring</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">📊</div>
+      <div class="project-title">Full Observability Stack (OTEL + LGTM)</div>
+      <div class="project-desc">
+        Implemented comprehensive monitoring using OpenTelemetry Collector, Loki, Grafana, Tempo, and Mimir. Built custom dashboards tracking AI model performance, request latency, GPU utilization, and system health. Enabled proactive incident detection and capacity planning for the AI platform.
+      </div>
+      <div class="project-tech">
+        <span>OpenTelemetry</span><span>Grafana</span><span>Loki</span><span>Tempo</span><span>Docker</span><span>Prometheus</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🔧</div>
+      <div class="project-title">OpenWebUI Platform & Custom Integrations</div>
+      <div class="project-desc">
+        Managed production OpenWebUI deployment from v0.6.x to v0.7.2 with custom pipelines and tools. Developed MCP server integrations connecting to RAGFlow, university databases, and external services. Created Zimbra email management tools, GitLab smart assistants, and CLI command execution tools.
+      </div>
+      <div class="project-tech">
+        <span>OpenWebUI</span><span>MCP</span><span>Python</span><span>Docker</span><span>PostgreSQL</span><span>Pipelines</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🎙️</div>
+      <div class="project-title">Automated Meeting Transcription System</div>
+      <div class="project-desc">
+        Built automated transcription pipeline for BigBlueButton video conferences using Faster-Whisper. Processes meeting recordings, generates accurate transcripts with speaker diarization, and integrates with the university's collaboration tools for seamless access to meeting summaries.
+      </div>
+      <div class="project-tech">
+        <span>Faster-Whisper</span><span>BigBlueButton</span><span>Python</span><span>Docker</span><span>FFmpeg</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🏥</div>
+      <div class="project-title">MediBot — Medical AI Chatbot</div>
+      <div class="project-desc">
+        Developed a Retrieval-Augmented Generation (RAG) based medical chatbot using LangChain and large language models. Implemented semantic search over medical documents to provide accurate, context-aware responses for health-related queries.
+      </div>
+      <div class="project-tech">
+        <span>LangChain</span><span>LLMs</span><span>RAG</span><span>Python</span><span>Streamlit</span><span>FAISS</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🧠</div>
+      <div class="project-title">Text-Based Emotion Detection</div>
+      <div class="project-desc">
+        Built deep learning models for multi-class emotion detection from text using TensorFlow, Keras, and PyTorch. Applied NLP techniques including tokenization, embedding, and recurrent architectures to analyze emotional content in textual data with high accuracy.
+      </div>
+      <div class="project-tech">
+        <span>TensorFlow</span><span>PyTorch</span><span>NLP</span><span>Deep Learning</span><span>NLTK</span><span>SpaCy</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🚗</div>
+      <div class="project-title">Arduino Self-Driving Car</div>
+      <div class="project-desc">
+        Final year project integrating computer vision and machine learning for autonomous navigation. Implemented obstacle detection, lane tracking, and adaptive control using C++ on embedded systems. Recognized for technical complexity with Grade A+.
+      </div>
+      <div class="project-tech">
+        <span>Arduino</span><span>C++</span><span>Computer Vision</span><span>ML</span><span>Embedded Systems</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SKILLS ═══════════════════ -->
+<section id="skills">
+  <div class="section-label reveal">Skills</div>
+  <h2 class="section-title reveal">Technical Arsenal</h2>
+  <p class="section-subtitle reveal">Tools and technologies I use daily in production.</p>
+
+  <div class="skills-container">
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">🤖</div>
+      <div class="skill-group-title">AI & Machine Learning</div>
+      <div class="skill-list">
+        <span class="skill-pill">LLMs</span>
+        <span class="skill-pill">RAG</span>
+        <span class="skill-pill">NLP</span>
+        <span class="skill-pill">Deep Learning</span>
+        <span class="skill-pill">Transformers</span>
+        <span class="skill-pill">Fine-tuning</span>
+        <span class="skill-pill">Prompt Engineering</span>
+        <span class="skill-pill">Embeddings</span>
+        <span class="skill-pill">Semantic Search</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">💻</div>
+      <div class="skill-group-title">Languages & Frameworks</div>
+      <div class="skill-list">
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">C++</span>
+        <span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">FastAPI</span>
+        <span class="skill-pill">LangChain</span>
+        <span class="skill-pill">Streamlit</span>
+        <span class="skill-pill">Gradio</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">🧠</div>
+      <div class="skill-group-title">ML Libraries</div>
+      <div class="skill-list">
+        <span class="skill-pill">PyTorch</span>
+        <span class="skill-pill">TensorFlow</span>
+        <span class="skill-pill">Scikit-learn</span>
+        <span class="skill-pill">Hugging Face</span>
+        <span class="skill-pill">XGBoost</span>
+        <span class="skill-pill">LightGBM</span>
+        <span class="skill-pill">FAISS</span>
+        <span class="skill-pill">ChromaDB</span>
+        <span class="skill-pill">SpaCy</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">🏗️</div>
+      <div class="skill-group-title">Infrastructure & DevOps</div>
+      <div class="skill-list">
+        <span class="skill-pill">Docker</span>
+        <span class="skill-pill">Docker Compose</span>
+        <span class="skill-pill">vLLM</span>
+        <span class="skill-pill">Ollama</span>
+        <span class="skill-pill">NVIDIA CUDA</span>
+        <span class="skill-pill">Linux</span>
+        <span class="skill-pill">Nginx</span>
+        <span class="skill-pill">GitLab CI/CD</span>
+        <span class="skill-pill">Systemd</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">📊</div>
+      <div class="skill-group-title">Observability & Data</div>
+      <div class="skill-list">
+        <span class="skill-pill">OpenTelemetry</span>
+        <span class="skill-pill">Grafana</span>
+        <span class="skill-pill">Loki</span>
+        <span class="skill-pill">Prometheus</span>
+        <span class="skill-pill">PostgreSQL</span>
+        <span class="skill-pill">Pandas</span>
+        <span class="skill-pill">NumPy</span>
+        <span class="skill-pill">Matplotlib</span>
+        <span class="skill-pill">Plotly</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">🔌</div>
+      <div class="skill-group-title">Platforms & Tools</div>
+      <div class="skill-list">
+        <span class="skill-pill">OpenWebUI</span>
+        <span class="skill-pill">RAGFlow</span>
+        <span class="skill-pill">MCP Servers</span>
+        <span class="skill-pill">Hugging Face</span>
+        <span class="skill-pill">BigBlueButton</span>
+        <span class="skill-pill">Faster-Whisper</span>
+        <span class="skill-pill">Zimbra</span>
+        <span class="skill-pill">Git</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ RESEARCH ═══════════════════ -->
+<section id="research">
+  <div class="section-label reveal">Research</div>
+  <h2 class="section-title reveal">Research & Academic Work</h2>
+  <p class="section-subtitle reveal">Applied research bridging academia and production systems.</p>
+
+  <div class="research-card reveal">
+    <div class="research-tag">Master's Thesis</div>
+    <div class="research-title">Intelligent Multimodal RAG System for University Information Management</div>
+    <div class="research-meta">Télécom SudParis / Université d'Évry Paris-Saclay · IBISC Laboratory — IRA2 Team · 2025</div>
+    <div class="research-desc">
+      Developed an end-to-end Retrieval-Augmented Generation system for automating university HR and IT support. The research explored multimodal document processing, hybrid search strategies combining semantic and lexical approaches, open-source LLM fine-tuning for institutional compliance, and the FACTS framework (Freshness, Architecture, Cost, Testing, Security) for enterprise RAG deployment. The system was deployed in production serving 500+ university staff, with plans for transfer to other universities. Evaluated positively by the thesis jury.
+    </div>
+  </div>
+
+  <div class="research-card reveal">
+    <div class="research-tag">Research Project</div>
+    <div class="research-title">RAG-Based Chatbot Development Following the NVIDIA FACTS Framework</div>
+    <div class="research-meta">Applied Research · 2025</div>
+    <div class="research-desc">
+      Implemented the NVIDIA FACTS framework for building production-grade RAG chatbots. Explored advanced chunking strategies, query rephrasing techniques, multi-step retrieval, and guardrails implementation for enterprise safety. Focused on using exclusively open-source models to protect data privacy within university infrastructure.
+    </div>
+  </div>
+
+  <div class="research-card reveal">
+    <div class="research-tag">Academic Project</div>
+    <div class="research-title">Parkinson's Disease Progression Prediction using Machine Learning</div>
+    <div class="research-meta">Data Science Research · 2023</div>
+    <div class="research-desc">
+      Developed a machine learning system to identify subtypes of Parkinson's disease and predict disease progression using clinical and genetic data. Applied ensemble methods (XGBoost, LightGBM) with feature engineering techniques. Created interactive visualizations using Streamlit to help medical professionals understand disease patterns and make informed decisions.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SERVICES ═══════════════════ -->
+<section id="services">
+  <div class="section-label reveal">Services</div>
+  <h2 class="section-title reveal">How I Can Help</h2>
+  <p class="section-subtitle reveal">Open for consulting, freelance, and collaboration opportunities.</p>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🤖</div>
+      <div class="service-title">RAG & AI Chatbot Development</div>
+      <div class="service-desc">End-to-end design and deployment of production RAG systems and intelligent chatbots for customer support, HR automation, IT helpdesks, and knowledge management using open-source LLMs.</div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🏗️</div>
+      <div class="service-title">AI Infrastructure Setup</div>
+      <div class="service-desc">GPU-optimized LLM serving with vLLM/Ollama, Docker containerization, OpenWebUI deployments, database migrations, and comprehensive monitoring with OTEL & Grafana stacks.</div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">📊</div>
+      <div class="service-title">Data Dashboards & Analytics</div>
+      <div class="service-desc">Interactive data dashboards, automated reporting tools, ETL pipeline development, and data-driven insights using Python, SQL, and modern visualization frameworks.</div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🔌</div>
+      <div class="service-title">Custom AI Integrations</div>
+      <div class="service-desc">MCP server development, API integrations, custom OpenWebUI pipelines and tools, email automation, meeting transcription systems, and enterprise AI workflow automation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section class="contact-section" id="contact">
+  <div class="section-label reveal">Contact</div>
+  <h2 class="section-title reveal" style="margin-left:auto;margin-right:auto;">Let's Build Something Together</h2>
+  <p class="section-subtitle reveal" style="margin-left:auto;margin-right:auto;">
+    Open for collaboration, consulting, and interesting AI engineering challenges.
+  </p>
+
+  <div class="contact-links-grid reveal">
+    <a href="mailto:sohail.cs951@gmail.com" class="contact-link">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      sohail.cs951@gmail.com
+    </a>
+    <a href="https://www.linkedin.com/in/muhammadsohail951" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/CallSohail" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+      GitHub
+    </a>
+    <a href="https://huggingface.co/msohail21" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      Hugging Face
+    </a>
+    <a href="https://twitter.com/CallSohail" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      X / Twitter
+    </a>
+    <a href="tel:+33781588798" class="contact-link">
+      <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      +33 781 588 798
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <p>Designed & built by <span>Muhammad Sohail</span> — 2025</p>
+</footer>
+
+<!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Scroll reveal with stagger
+  const revealElements = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+  revealElements.forEach(el => observer.observe(el));
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
